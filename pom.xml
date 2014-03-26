@@ -65,6 +65,58 @@
 
   <plugins>
    <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-release-plugin</artifactId>
+    <configuration>
+     <allowTimestampedSnapshots>true</allowTimestampedSnapshots>
+     <goals>install</goals>
+     <preparationGoals>package install</preparationGoals>
+    </configuration>
+   </plugin>
+   <plugin>
+    <groupId>org.codehaus.gmaven</groupId>
+    <artifactId>gmaven-plugin</artifactId>
+    <version>1.5</version>
+    <executions>
+     <execution>
+      <phase>generate-resources</phase>
+      <goals>
+       <goal>execute</goal>
+      </goals>
+      <configuration>
+       <source>
+        def gaeversion = new
+        String(project.version).replace('.','-').toLowerCase()
+        project.properties.setProperty('gaeversion',gaeversion)
+       </source>
+      </configuration>
+     </execution>
+    </executions>
+   </plugin>
+   <plugin>
+    <!-- Sets the version in appengine-web.xml -->
+    <groupId>com.google.code.maven-replacer-plugin</groupId>
+    <artifactId>replacer</artifactId>
+    <version>1.5.2</version>
+    <executions>
+     <execution>
+      <phase>package</phase>
+      <goals>
+       <goal>replace</goal>
+      </goals>
+     </execution>
+    </executions>
+    <configuration>
+     <file>${project.build.directory}/${project.build.finalName}/WEB-INF/appengine-web.xml</file>
+     <replacements>
+      <replacement>
+       <token>gaeversion</token>
+       <value>${gaeversion}</value>
+      </replacement>
+     </replacements>
+    </configuration>
+   </plugin>
+   <plugin>
     <!-- Run annotation processors on src/home/java sources -->
     <groupId>org.bsc.maven</groupId>
     <artifactId>maven-processor-plugin</artifactId>
@@ -197,8 +249,24 @@
      <configuration>
       <lifecycleMappingMetadata>
        <pluginExecutions>
-
         <pluginExecution>
+         <pluginExecution>
+          <pluginExecutionFilter>
+           <groupId>
+            org.codehaus.gmaven
+           </groupId>
+           <artifactId>
+            gmaven-plugin
+           </artifactId>
+           <versionRange>[1.5,)</versionRange>
+           <goals>
+            <goal>execute</goal>
+           </goals>
+          </pluginExecutionFilter>
+          <action>
+           <ignore />
+          </action>
+         </pluginExecution>
          <pluginExecutionFilter>
           <groupId>org.bsc.maven</groupId>
           <artifactId>maven-processor-plugin</artifactId>
