@@ -18,12 +18,15 @@ package mobi.nuuvo.frimgle.server.dao;
 
 import mobi.nuuvo.frimgle.shared.domain.Task;
 
+/**
+ * The Class TaskDao.
+ */
 public class TaskDao extends BaseDao<Task> {
-    protected TaskDao() {
-        super(Task.class);
-    }
 
-    public Integer findTotalCount() {
-        return query().count();
-    }
+	/**
+	 * Instantiates a new task dao.
+	 */
+	protected TaskDao() {
+		super(Task.class);
+	}
 }

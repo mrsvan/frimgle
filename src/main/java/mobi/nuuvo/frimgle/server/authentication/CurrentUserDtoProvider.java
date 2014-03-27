@@ -63,15 +63,21 @@ public class CurrentUserDtoProvider implements Provider<CurrentUserDto> {
 
             user = userDao.findByGoogleId(googleId);
             if (user == null) {
-                user = createUser(googleId);
+                user = createUserForCurrentUser();
             }
         }
         return user;
     }
 
-    private User createUser(String googleId) {
+    private User createUserForCurrentUser() {
+    	if (!userService.isUserLoggedIn()) {
+    		return null;
+    	}
+
         User user = new User();
-        user.setGoogleId(googleId);
+        final com.google.appengine.api.users.User currentUser = userService.getCurrentUser();
+		user.setGoogleId(currentUser.getUserId());
+        user.setName(currentUser.getEmail());
         return userDao.put(user);
     }
 }

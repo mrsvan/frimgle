@@ -23,90 +23,214 @@ import java.util.List;
 import java.util.Map;
 
 import mobi.nuuvo.frimgle.server.dao.objectify.OfyService;
+import mobi.nuuvo.frimgle.shared.domain.BaseEntity;
 
 import com.google.common.collect.Lists;
 import com.googlecode.objectify.Key;
 import com.googlecode.objectify.Objectify;
 import com.googlecode.objectify.cmd.LoadType;
 
-public abstract class BaseDao<T> {
+/**
+ * The Class BaseDao.
+ *
+ * @param <T>
+ *            the generic type
+ */
+public abstract class BaseDao<T extends BaseEntity> {
 
-    private final Class<T> clazz;
+	/** The clazz. */
+	private final Class<T> clazz;
 
-    private Objectify lazyOfy;
+	/** The lazy ofy. */
+	private Objectify lazyOfy;
 
-    protected BaseDao(final Class<T> clazz) {
-        this.clazz = clazz;
+	/**
+	 * Instantiates a new base dao.
+	 *
+	 * @param clazz
+	 *            the clazz
+	 */
+	protected BaseDao(final Class<T> clazz) {
+		this.clazz = clazz;
+	}
+
+	/**
+	 * Gets the all.
+	 *
+	 * @return the all
+	 */
+	public List<T> getAll() {
+		return query().list();
+	}
+
+	/**
+	 * Increment the entity's version and save it to the datastore.
+	 *
+	 * @param object
+	 *            the object
+	 * @return the t
+	 */
+	public T put(T object) {
+		object.setVersion(object.getVersion() + 1);
+		ofy().save().entity(object).now();
+
+		return object;
+	}
+
+	/**
+	 * Increments multiple entities' version and saves them to the datastore.
+	 *
+	 * @param entities
+	 *            the entities
+	 * @return the collection
+	 */
+	public Collection<T> put(Iterable<T> entities) {
+		for (T entity : entities) {
+			entity.setVersion(entity.getVersion() + 1);
+		}
+		return ofy().save().entities(entities).now().values();
+	}
+
+	/**
+	 * Gets the.
+	 *
+	 * @param key
+	 *            the key
+	 * @return the t
+	 */
+	public T get(Key<T> key) {
+		return ofy().load().key(key).now();
+	}
+
+	/**
+	 * Gets the.
+	 *
+	 * @param id
+	 *            the id
+	 * @return the t
+	 */
+	public T get(Long id) {
+		// work around for objectify cacheing and new query not having the
+		// latest
+		// data
+		ofy().clear();
+
+		return query().id(id).now();
+	}
+
+	/**
+	 * Exists.
+	 *
+	 * @param key
+	 *            the key
+	 * @return the boolean
+	 */
+	public Boolean exists(Key<T> key) {
+		return get(key) != null;
+	}
+
+	/**
+	 * Exists.
+	 *
+	 * @param id
+	 *            the id
+	 * @return the boolean
+	 */
+	public Boolean exists(Long id) {
+		return get(id) != null;
+	}
+
+	/**
+	 * Gets the subset.
+	 *
+	 * @param ids
+	 *            the ids
+	 * @return the subset
+	 */
+	public List<T> getSubset(List<Long> ids) {
+		return new ArrayList<T>(query().ids(ids).values());
+	}
+
+	/**
+	 * Gets the subset map.
+	 *
+	 * @param ids
+	 *            the ids
+	 * @return the subset map
+	 */
+	public Map<Long, T> getSubsetMap(List<Long> ids) {
+		return new HashMap<Long, T>(query().ids(ids));
+	}
+
+	/**
+	 * Delete.
+	 *
+	 * @param object
+	 *            the object
+	 */
+	public void delete(T object) {
+		ofy().delete().entity(object).now();
+	}
+
+	/**
+	 * Delete.
+	 *
+	 * @param id
+	 *            the id
+	 */
+	public void delete(Long id) {
+		Key<T> key = Key.create(clazz, id);
+		ofy().delete().entity(key).now();
+	}
+
+	/**
+	 * Delete.
+	 *
+	 * @param objects
+	 *            the objects
+	 */
+	public void delete(List<T> objects) {
+		ofy().delete().entities(objects).now();
+	}
+
+    /**
+     * Find total count.
+     *
+     * @return the integer
+     */
+    public Integer findTotalCount() {
+        return query().count();
     }
 
-    public List<T> getAll() {
-        return query().list();
-    }
+	/**
+	 * Gets the.
+	 *
+	 * @param keys
+	 *            the keys
+	 * @return the list
+	 */
+	public List<T> get(List<Key<T>> keys) {
+		return Lists.newArrayList(ofy().load().keys(keys).values());
+	}
 
-    public T put(T object) {
-        ofy().save().entity(object).now();
+	/**
+	 * Ofy.
+	 *
+	 * @return the objectify
+	 */
+	protected Objectify ofy() {
+		if (lazyOfy == null) {
+			lazyOfy = OfyService.ofy();
+		}
+		return lazyOfy;
+	}
 
-        return object;
-    }
-
-    public Collection<T> put(Iterable<T> entities) {
-        return ofy().save().entities(entities).now().values();
-    }
-
-    public T get(Key<T> key) {
-        return ofy().load().key(key).now();
-    }
-
-    public T get(Long id) {
-        // work around for objectify cacheing and new query not having the
-        // latest
-        // data
-        ofy().clear();
-
-        return query().id(id).now();
-    }
-
-    public Boolean exists(Key<T> key) {
-        return get(key) != null;
-    }
-
-    public Boolean exists(Long id) {
-        return get(id) != null;
-    }
-
-    public List<T> getSubset(List<Long> ids) {
-        return new ArrayList<T>(query().ids(ids).values());
-    }
-
-    public Map<Long, T> getSubsetMap(List<Long> ids) {
-        return new HashMap<Long, T>(query().ids(ids));
-    }
-
-    public void delete(T object) {
-        ofy().delete().entity(object);
-    }
-
-    public void delete(Long id) {
-        Key<T> key = Key.create(clazz, id);
-        ofy().delete().entity(key);
-    }
-
-    public void delete(List<T> objects) {
-        ofy().delete().entities(objects);
-    }
-
-    public List<T> get(List<Key<T>> keys) {
-        return Lists.newArrayList(ofy().load().keys(keys).values());
-    }
-
-    protected Objectify ofy() {
-        if (lazyOfy == null) {
-            lazyOfy = OfyService.ofy();
-        }
-        return lazyOfy;
-    }
-
-    protected LoadType<T> query() {
-        return ofy().load().type(clazz);
-    }
+	/**
+	 * Query.
+	 *
+	 * @return the load type
+	 */
+	protected LoadType<T> query() {
+		return ofy().load().type(clazz);
+	}
 }

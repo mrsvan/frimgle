@@ -20,24 +20,23 @@ import com.googlecode.objectify.annotation.Cache;
 import com.googlecode.objectify.annotation.Entity;
 
 /**
- * The Class Task.
+ * The Class Account.
  */
 @Entity
 @Cache
-public class Task extends BaseEntity {
+public class Account extends BaseEntity {
 
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 2503087220599880755L;
+    /** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 6646751020797398981L;
 
 	/** The name. */
-	private String name;
+    private String name = "";
 
-	/**
-	 * Instantiates a new task.
-	 */
-	public Task() {
-		name = "";
-	}
+    /**
+     * Instantiates a new user.
+     */
+    public Account() {
+    }
 
 	/**
 	 * Gets the name.
@@ -51,8 +50,7 @@ public class Task extends BaseEntity {
 	/**
 	 * Sets the name.
 	 *
-	 * @param name
-	 *            the new name
+	 * @param name the name to set
 	 */
 	public void setName(String name) {
 		this.name = name;

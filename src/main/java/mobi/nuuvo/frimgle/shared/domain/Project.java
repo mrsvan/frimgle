@@ -16,27 +16,36 @@
 
 package mobi.nuuvo.frimgle.shared.domain;
 
+import com.googlecode.objectify.Ref;
 import com.googlecode.objectify.annotation.Cache;
 import com.googlecode.objectify.annotation.Entity;
+import com.googlecode.objectify.annotation.Index;
+import com.googlecode.objectify.annotation.Load;
+import com.googlecode.objectify.annotation.Parent;
 
 /**
- * The Class Task.
+ * The Class Project.
  */
 @Entity
 @Cache
-public class Task extends BaseEntity {
+public class Project extends BaseEntity {
 
 	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 2503087220599880755L;
+	private static final long serialVersionUID = -5566762732379759508L;
 
 	/** The name. */
 	private String name;
 
+	/** The account. */
+	@Load
+	@Parent
+	@Index
+	private Ref<Account> account;
+
 	/**
-	 * Instantiates a new task.
+	 * Instantiates a new project.
 	 */
-	public Task() {
-		name = "";
+	public Project() {
 	}
 
 	/**
@@ -51,10 +60,27 @@ public class Task extends BaseEntity {
 	/**
 	 * Sets the name.
 	 *
-	 * @param name
-	 *            the new name
+	 * @param name the new name
 	 */
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	/**
+	 * Gets the account.
+	 *
+	 * @return the account
+	 */
+	public Account getAccount() {
+		return account == null ? null : account.get();
+	}
+
+	/**
+	 * Sets the account.
+	 *
+	 * @param account the new account
+	 */
+	public void setAccount(Account account) {
+		this.account = safeRef(account);
 	}
 }

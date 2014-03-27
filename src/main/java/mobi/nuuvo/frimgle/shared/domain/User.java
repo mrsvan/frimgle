@@ -16,23 +16,94 @@
 
 package mobi.nuuvo.frimgle.shared.domain;
 
+import com.googlecode.objectify.Ref;
+import com.googlecode.objectify.annotation.Cache;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Index;
+import com.googlecode.objectify.annotation.Load;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class User.
+ */
 @Entity
+@Cache
 public class User extends BaseEntity {
-    @Index
-    private String googleId;
 
-    public User() {
-        googleId = "";
-    }
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 2121277228300392942L;
 
-    public String getGoogleId() {
-        return googleId;
-    }
+	/** The name. */
+	private String name;
 
-    public void setGoogleId(String googleId) {
-        this.googleId = googleId;
-    }
+	/** The google id. */
+	@Index
+	private String googleId;
+
+	/** The account. */
+	@Load
+	@Index
+	private Ref<Account> account;
+
+	/**
+	 * Instantiates a new user.
+	 */
+	public User() {
+		googleId = "";
+	}
+
+	/**
+	 * Gets the google id.
+	 *
+	 * @return the google id
+	 */
+	public String getGoogleId() {
+		return googleId;
+	}
+
+	/**
+	 * Sets the google id.
+	 *
+	 * @param googleId
+	 *            the new google id
+	 */
+	public void setGoogleId(String googleId) {
+		this.googleId = googleId;
+	}
+
+	/**
+	 * Gets the account.
+	 *
+	 * @return the account
+	 */
+	public Account getAccount() {
+		return account == null ? null : account.get();
+	}
+
+	/**
+	 * Sets the account.
+	 *
+	 * @param account the new account
+	 */
+	public void setAccount(Account account) {
+		this.account = safeRef(account);
+	}
+
+	/**
+	 * Gets the name.
+	 *
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * Sets the name.
+	 *
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
 }
