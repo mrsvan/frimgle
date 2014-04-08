@@ -3,16 +3,12 @@
 <module rename-to='project'>
  <!-- Inherit the core Web Toolkit stuff. -->
  <inherits name='com.google.gwt.user.User' />
- <!-- <inherits name='com.google.gwt.inject.Inject'/> -->
 
  <!-- Default css -->
  <inherits name='com.google.gwt.user.theme.standard.Standard' />
- <!-- <inherits name='com.google.gwt.user.theme.chrome.Chrome'/> -->
- <!-- <inherits name='com.google.gwt.user.theme.dark.Dark'/> -->
 
- <!-- Other module inherits -->
+ <!-- GWTP inherits -->
  <inherits name='com.gwtplatform.dispatch.Dispatch' />
-
  <inherits name='com.gwtplatform.mvp.MvpWithEntryPoint' />
 
  <!-- Allow shared domain entities to use Objectify classes -->
@@ -20,6 +16,9 @@
 
  <!-- Guava support -->
  <inherits name="com.google.common.base.Base" />
+
+ <!-- RequestFactory support -->
+ <inherits name='com.google.web.bindery.requestfactory.RequestFactory' />
 
  <source path='client' />
  <source path='shared' />

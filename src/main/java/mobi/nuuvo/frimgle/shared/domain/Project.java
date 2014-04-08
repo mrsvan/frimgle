@@ -60,7 +60,8 @@ public class Project extends BaseEntity {
 	/**
 	 * Sets the name.
 	 *
-	 * @param name the new name
+	 * @param name
+	 *            the new name
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -78,7 +79,8 @@ public class Project extends BaseEntity {
 	/**
 	 * Sets the account.
 	 *
-	 * @param account the new account
+	 * @param account
+	 *            the new account
 	 */
 	public void setAccount(Account account) {
 		this.account = safeRef(account);

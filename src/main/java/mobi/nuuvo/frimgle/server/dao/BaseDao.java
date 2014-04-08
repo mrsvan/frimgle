@@ -36,13 +36,13 @@ import com.googlecode.objectify.cmd.LoadType;
  * @param <T>
  *            the generic type
  */
-public abstract class BaseDao<T extends BaseEntity> {
+abstract class BaseDao<T extends BaseEntity> {
 
 	/** The clazz. */
 	private final Class<T> clazz;
 
 	/** The lazy ofy. */
-	private Objectify lazyOfy;
+	private static Objectify lazyOfy;
 
 	/**
 	 * Instantiates a new base dao.
@@ -193,14 +193,14 @@ public abstract class BaseDao<T extends BaseEntity> {
 		ofy().delete().entities(objects).now();
 	}
 
-    /**
-     * Find total count.
-     *
-     * @return the integer
-     */
-    public Integer findTotalCount() {
-        return query().count();
-    }
+	/**
+	 * Find total count.
+	 *
+	 * @return the integer
+	 */
+	public Integer findTotalCount() {
+		return query().count();
+	}
 
 	/**
 	 * Gets the.
@@ -218,7 +218,7 @@ public abstract class BaseDao<T extends BaseEntity> {
 	 *
 	 * @return the objectify
 	 */
-	protected Objectify ofy() {
+	protected static Objectify ofy() {
 		if (lazyOfy == null) {
 			lazyOfy = OfyService.ofy();
 		}

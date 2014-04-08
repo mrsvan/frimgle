@@ -19,7 +19,7 @@
   <gwt.style>OBF</gwt.style>
 
   <!-- server -->
-  <gae.version>1.9.1</gae.version>
+  <gae.version>1.9.2</gae.version>
   <guice.version>3.0</guice.version>
   <objectify.version>4.0.1</objectify.version>
   <persistence-api.version>1.0.2</persistence-api.version>
@@ -33,12 +33,12 @@
   <jukito.version>1.1</jukito.version>
 
   <!-- maven -->
-  <gwt-maven-plugin.version>2.5.1</gwt-maven-plugin.version>
-  <maven-surefire-plugin.version>2.6</maven-surefire-plugin.version>
-  <maven-compiler-plugin.version>2.3.2</maven-compiler-plugin.version>
-  <maven-resources-plugin.version>2.5</maven-resources-plugin.version>
-  <maven-processor-plugin.version>2.0.5</maven-processor-plugin.version>
-  <maven-build-helper-plugin.version>1.7</maven-build-helper-plugin.version>
+  <gwt-maven-plugin.version>${gwt.version}</gwt-maven-plugin.version>
+  <maven-surefire-plugin.version>2.17</maven-surefire-plugin.version>
+  <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
+  <maven-resources-plugin.version>2.6</maven-resources-plugin.version>
+  <maven-processor-plugin.version>2.2.4</maven-processor-plugin.version>
+  <maven-build-helper-plugin.version>1.8</maven-build-helper-plugin.version>
 
   <target.jdk>1.7</target.jdk>
   <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -47,246 +47,7 @@
   <webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
  </properties>
 
- <build>
-  <outputDirectory>${webappDirectory}/WEB-INF/classes</outputDirectory>
 
-  <resources>
-   <resource>
-    <directory>${basedir}/src/main/resources</directory>
-    <filtering>true</filtering>
-   </resource>
-   <resource>
-    <directory>${project.build.directory}/generated-sources/apt</directory>
-   </resource>
-   <resource>
-    <directory>${project.build.directory}/generated-sources/gwt</directory>
-   </resource>
-  </resources>
-
-  <plugins>
-   <plugin>
-    <groupId>org.apache.maven.plugins</groupId>
-    <artifactId>maven-release-plugin</artifactId>
-    <configuration>
-     <allowTimestampedSnapshots>true</allowTimestampedSnapshots>
-     <goals>install</goals>
-     <preparationGoals>package install</preparationGoals>
-    </configuration>
-   </plugin>
-   <plugin>
-    <groupId>org.codehaus.gmaven</groupId>
-    <artifactId>gmaven-plugin</artifactId>
-    <version>1.5</version>
-    <executions>
-     <execution>
-      <phase>generate-resources</phase>
-      <goals>
-       <goal>execute</goal>
-      </goals>
-      <configuration>
-       <source>
-        def gaeversion = new
-        String(project.version).replace('.','-').toLowerCase()
-        project.properties.setProperty('gaeversion',gaeversion)
-       </source>
-      </configuration>
-     </execution>
-    </executions>
-   </plugin>
-   <plugin>
-    <!-- Sets the version in appengine-web.xml -->
-    <groupId>com.google.code.maven-replacer-plugin</groupId>
-    <artifactId>replacer</artifactId>
-    <version>1.5.2</version>
-    <executions>
-     <execution>
-      <phase>package</phase>
-      <goals>
-       <goal>replace</goal>
-      </goals>
-     </execution>
-    </executions>
-    <configuration>
-     <file>${project.build.directory}/${project.build.finalName}/WEB-INF/appengine-web.xml</file>
-     <replacements>
-      <replacement>
-       <token>gaeversion</token>
-       <value>${gaeversion}</value>
-      </replacement>
-     </replacements>
-    </configuration>
-   </plugin>
-   <plugin>
-    <!-- Run annotation processors on src/home/java sources -->
-    <groupId>org.bsc.maven</groupId>
-    <artifactId>maven-processor-plugin</artifactId>
-    <version>2.2.4</version>
-    <executions>
-     <execution>
-      <id>process</id>
-      <goals>
-       <goal>process</goal>
-      </goals>
-      <phase>generate-sources</phase>
-     </execution>
-    </executions>
-    <dependencies>
-     <dependency>
-      <groupId>com.gwtplatform</groupId>
-      <artifactId>gwtp-processors</artifactId>
-      <version>${gwtp.version}</version>
-     </dependency>
-    </dependencies>
-   </plugin>
-   <plugin>
-    <!-- Copy the generated classses -->
-    <groupId>org.codehaus.mojo</groupId>
-    <artifactId>build-helper-maven-plugin</artifactId>
-    <version>1.5</version>
-    <executions>
-     <execution>
-      <id>add-source</id>
-      <phase>generate-sources</phase>
-      <goals>
-       <goal>add-source</goal>
-      </goals>
-      <configuration>
-       <sources>
-        <source>${project.build.directory}/generated-sources/apt</source>
-        <source>${project.build.directory}/generated-sources/gwt</source>
-       </sources>
-      </configuration>
-     </execution>
-    </executions>
-   </plugin>
-   <plugin>
-    <groupId>org.apache.maven.plugins</groupId>
-    <artifactId>maven-compiler-plugin</artifactId>
-    <version>${maven-compiler-plugin.version}</version>
-    <configuration>
-     <source>${target.jdk}</source>
-     <target>${target.jdk}</target>
-     <encoding>${project.build.sourceEncoding}</encoding>
-     <proc>none</proc>
-    </configuration>
-   </plugin>
-
-   <plugin>
-    <!-- JUnit Testing - skip *.GwtTest cases -->
-    <!-- 'mvn test' - runs the Jukito tests -->
-    <groupId>org.apache.maven.plugins</groupId>
-    <artifactId>maven-surefire-plugin</artifactId>
-    <version>${maven-surefire-plugin.version}</version>
-    <configuration>
-     <includes>
-      <include>**/*Test.java</include>
-     </includes>
-     <excludes>
-      <exclude>**/*GwtTest.java</exclude>
-     </excludes>
-    </configuration>
-   </plugin>
-
-   <plugin>
-    <!-- GWT -->
-    <!-- 'mvn gwt:run' - runs development mode -->
-    <!-- 'mvn gwt:debug' - runs debug mode -->
-    <!-- 'mvn gwt:compile' - compiles gwt -->
-    <!-- 'mvn integration-test' - runs the gwt tests (*GwtTest.java) -->
-    <groupId>org.codehaus.mojo</groupId>
-    <artifactId>gwt-maven-plugin</artifactId>
-    <version>${gwt.version}</version>
-    <configuration>
-     <strict>true</strict>
-     <testTimeOut>180</testTimeOut>
-     <!-- With multiple tests use GwtTestSuite.java for speed -->
-     <includes>**/*GwtTest.java</includes>
-     <mode>htmlunit</mode>
-
-     <extraJvmArgs>-Xss1024K -Xmx1024M -XX:MaxPermSize=256M</extraJvmArgs>
-     <logLevel>INFO</logLevel>
-     <style>${gwt.style}</style>
-
-     <copyWebapp>true</copyWebapp>
-     <hostedWebapp>${webappDirectory}</hostedWebapp>
-
-     <server>com.google.appengine.tools.development.gwt.AppEngineLauncher</server>
-     <appEngineVersion>${gae.version}</appEngineVersion>
-     <appEngineHome>${gae.home}</appEngineHome>
-     <extraJvmArgs>-Dappengine.sdk.root=${gae.home}</extraJvmArgs>
-
-     <runTarget>Project.html</runTarget>
-     <modules>
-      <module>mobi.nuuvo.frimgle.Project</module>
-     </modules>
-    </configuration>
-    <executions>
-     <execution>
-      <goals>
-       <goal>compile</goal>
-       <goal>test</goal>
-      </goals>
-     </execution>
-    </executions>
-   </plugin>
-
-   <!-- Google App Engine Deployment -->
-   <plugin>
-    <groupId>com.google.appengine</groupId>
-    <artifactId>appengine-maven-plugin</artifactId>
-    <version>${gae.version}</version>
-    <configuration>
-     <splitJars>true</splitJars>
-    </configuration>
-   </plugin>
-  </plugins>
-  <pluginManagement>
-   <plugins>
-    <plugin>
-     <groupId>org.eclipse.m2e</groupId>
-     <artifactId>lifecycle-mapping</artifactId>
-     <version>1.0.0</version>
-     <configuration>
-      <lifecycleMappingMetadata>
-       <pluginExecutions>
-        <pluginExecution>
-         <pluginExecution>
-          <pluginExecutionFilter>
-           <groupId>
-            org.codehaus.gmaven
-           </groupId>
-           <artifactId>
-            gmaven-plugin
-           </artifactId>
-           <versionRange>[1.5,)</versionRange>
-           <goals>
-            <goal>execute</goal>
-           </goals>
-          </pluginExecutionFilter>
-          <action>
-           <ignore />
-          </action>
-         </pluginExecution>
-         <pluginExecutionFilter>
-          <groupId>org.bsc.maven</groupId>
-          <artifactId>maven-processor-plugin</artifactId>
-          <versionRange>[2.0.5,)</versionRange>
-          <goals>
-           <goal>generate-sources</goal>
-          </goals>
-         </pluginExecutionFilter>
-         <action>
-          <execute />
-         </action>
-        </pluginExecution>
-
-       </pluginExecutions>
-      </lifecycleMappingMetadata>
-     </configuration>
-    </plugin>
-   </plugins>
-  </pluginManagement>
- </build>
 
  <dependencies>
   <!-- Google Web Toolkit dependencies -->
@@ -300,7 +61,24 @@
    <groupId>com.google.gwt</groupId>
    <artifactId>gwt-servlet</artifactId>
    <version>${gwt.version}</version>
-   <scope>runtime</scope>
+  </dependency>
+  <dependency>
+   <groupId>com.google.web.bindery</groupId>
+   <artifactId>requestfactory-apt</artifactId>
+   <version>${gwt.version}</version>
+   <scope>provided</scope>
+  </dependency>
+  <dependency>
+   <groupId>com.google.web.bindery</groupId>
+   <artifactId>requestfactory-server</artifactId>
+   <version>${gwt.version}</version>
+  </dependency>
+  <dependency>
+   <!-- We need to inject a default validator for use with RequestFactory.
+    We use 4.3.1 to remain compatible with validation-api 1.1.0.Final -->
+   <groupId>org.hibernate</groupId>
+   <artifactId>hibernate-validator</artifactId>
+   <version>4.3.1.Final</version>
   </dependency>
 
   <!-- GWT-Platform dependencies -->
@@ -429,4 +207,237 @@
    <scope>test</scope>
   </dependency>
  </dependencies>
+ <build>
+  <resources>
+   <resource>
+    <directory>${basedir}/src/main/resources</directory>
+    <filtering>true</filtering>
+   </resource>
+   <resource>
+    <directory>${project.build.directory}/generated-sources/apt</directory>
+   </resource>
+   <resource>
+    <directory>${project.build.directory}/generated-sources/gwt</directory>
+   </resource>
+  </resources>
+
+  <plugins>
+   <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-release-plugin</artifactId>
+    <configuration>
+     <allowTimestampedSnapshots>true</allowTimestampedSnapshots>
+     <goals>install</goals>
+     <preparationGoals>package install</preparationGoals>
+    </configuration>
+   </plugin>
+   <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-war-plugin</artifactId>
+    <version>2.4</version>
+    <configuration>
+     <archiveClasses>true</archiveClasses>
+    </configuration>
+   </plugin>
+   <plugin>
+    <groupId>org.codehaus.gmaven</groupId>
+    <artifactId>gmaven-plugin</artifactId>
+    <version>1.5</version>
+    <executions>
+     <execution>
+      <phase>generate-resources</phase>
+      <goals>
+       <goal>execute</goal>
+      </goals>
+      <configuration>
+       <source>
+        def gaeversion = new String(project.version).replace('.','-').toLowerCase()
+        project.properties.setProperty('gaeversion',gaeversion)
+       </source>
+      </configuration>
+     </execution>
+    </executions>
+   </plugin>
+   <plugin>
+    <!-- Sets the version in appengine-web.xml -->
+    <groupId>com.google.code.maven-replacer-plugin</groupId>
+    <artifactId>replacer</artifactId>
+    <version>1.5.2</version>
+    <executions>
+     <execution>
+      <phase>package</phase>
+      <goals>
+       <goal>replace</goal>
+      </goals>
+     </execution>
+    </executions>
+    <configuration>
+     <file>${project.build.directory}/${project.build.finalName}/WEB-INF/appengine-web.xml</file>
+     <replacements>
+      <replacement>
+       <token>gaeversion</token>
+       <value>${gaeversion}</value>
+      </replacement>
+     </replacements>
+    </configuration>
+   </plugin>
+   <plugin>
+    <!-- Run annotation processors on src/home/java sources -->
+    <groupId>org.bsc.maven</groupId>
+    <artifactId>maven-processor-plugin</artifactId>
+    <version>${maven-processor-plugin.version}</version>
+    <executions>
+     <execution>
+      <id>process</id>
+      <goals>
+       <goal>process</goal>
+      </goals>
+      <phase>generate-sources</phase>
+     </execution>
+    </executions>
+    <dependencies>
+     <dependency>
+      <groupId>com.gwtplatform</groupId>
+      <artifactId>gwtp-processors</artifactId>
+      <version>${gwtp.version}</version>
+     </dependency>
+    </dependencies>
+   </plugin>
+   <plugin>
+    <!-- Copy the generated classses -->
+    <groupId>org.codehaus.mojo</groupId>
+    <artifactId>build-helper-maven-plugin</artifactId>
+    <version>${maven-build-helper-plugin.version}</version>
+    <executions>
+     <execution>
+      <id>add-source</id>
+      <phase>generate-sources</phase>
+      <goals>
+       <goal>add-source</goal>
+      </goals>
+      <configuration>
+       <sources>
+        <source>${project.build.directory}/generated-sources/apt</source>
+        <source>${project.build.directory}/generated-sources/gwt</source>
+       </sources>
+      </configuration>
+     </execution>
+    </executions>
+   </plugin>
+   <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-compiler-plugin</artifactId>
+    <version>${maven-compiler-plugin.version}</version>
+    <configuration>
+     <source>${target.jdk}</source>
+     <target>${target.jdk}</target>
+     <encoding>${project.build.sourceEncoding}</encoding>
+     <proc>none</proc>
+    </configuration>
+   </plugin>
+
+   <plugin>
+    <!-- JUnit Testing - skip *.GwtTest cases -->
+    <!-- 'mvn test' - runs the Jukito tests -->
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-surefire-plugin</artifactId>
+    <version>${maven-surefire-plugin.version}</version>
+    <configuration>
+     <includes>
+      <include>**/*Test.java</include>
+     </includes>
+     <excludes>
+      <exclude>**/*GwtTest.java</exclude>
+     </excludes>
+    </configuration>
+   </plugin>
+
+   <plugin>
+    <!-- GWT -->
+    <!-- 'mvn gwt:run' - runs development mode -->
+    <!-- 'mvn gwt:debug' - runs debug mode -->
+    <!-- 'mvn gwt:compile' - compiles gwt -->
+    <!-- 'mvn integration-test' - runs the gwt tests (*GwtTest.java) -->
+    <groupId>org.codehaus.mojo</groupId>
+    <artifactId>gwt-maven-plugin</artifactId>
+    <version>${gwt-maven-plugin.version}</version>
+    <configuration>
+     <strict>false</strict>
+     <testTimeOut>180</testTimeOut>
+     <!-- With multiple tests use GwtTestSuite.java for speed -->
+     <includes>**/*GwtTest.java</includes>
+     <mode>htmlunit</mode>
+
+     <extraJvmArgs>-Xss1024K -Xmx1024M -XX:MaxPermSize=256M</extraJvmArgs>
+     <logLevel>INFO</logLevel>
+     <style>${gwt.style}</style>
+
+     <copyWebapp>true</copyWebapp>
+     <hostedWebapp>${webappDirectory}</hostedWebapp>
+
+     <server>com.google.appengine.tools.development.gwt.AppEngineLauncher</server>
+     <appEngineVersion>${gae.version}</appEngineVersion>
+     <appEngineHome>${gae.home}</appEngineHome>
+     <extraJvmArgs>-Dappengine.sdk.root=${gae.home}</extraJvmArgs>
+
+     <runTarget>Project.html</runTarget>
+     <modules>
+      <module>mobi.nuuvo.frimgle.Project</module>
+     </modules>
+    </configuration>
+    <executions>
+     <execution>
+      <goals>
+       <goal>compile</goal>
+       <goal>test</goal>
+      </goals>
+     </execution>
+    </executions>
+   </plugin>
+
+   <!-- Google App Engine Deployment -->
+   <plugin>
+    <groupId>com.google.appengine</groupId>
+    <artifactId>appengine-maven-plugin</artifactId>
+    <version>${gae.version}</version>
+    <configuration>
+     <splitJars>true</splitJars>
+    </configuration>
+   </plugin>
+  </plugins>
+
+  <pluginManagement>
+   <plugins>
+    <plugin>
+     <groupId>org.eclipse.m2e</groupId>
+     <artifactId>lifecycle-mapping</artifactId>
+     <version>1.0.0</version>
+     <configuration>
+      <lifecycleMappingMetadata>
+       <pluginExecutions>
+        <pluginExecution>
+         <pluginExecutionFilter>
+          <groupId>
+           org.codehaus.gmaven
+          </groupId>
+          <artifactId>
+           gmaven-plugin
+          </artifactId>
+          <versionRange>[1.5,)</versionRange>
+          <goals>
+           <goal>execute</goal>
+          </goals>
+         </pluginExecutionFilter>
+         <action>
+          <ignore />
+         </action>
+        </pluginExecution>
+       </pluginExecutions>
+      </lifecycleMappingMetadata>
+     </configuration>
+    </plugin>
+   </plugins>
+  </pluginManagement>
+  <outputDirectory>${project.build.directory}/${project.build.finalName}/WEB-INF/classes</outputDirectory>
+ </build>
 </project>

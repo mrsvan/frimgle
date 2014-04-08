@@ -22,7 +22,6 @@ import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Index;
 import com.googlecode.objectify.annotation.Load;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class User.
  */
@@ -83,7 +82,8 @@ public class User extends BaseEntity {
 	/**
 	 * Sets the account.
 	 *
-	 * @param account the new account
+	 * @param account
+	 *            the new account
 	 */
 	public void setAccount(Account account) {
 		this.account = safeRef(account);
@@ -101,7 +101,8 @@ public class User extends BaseEntity {
 	/**
 	 * Sets the name.
 	 *
-	 * @param name the name to set
+	 * @param name
+	 *            the name to set
 	 */
 	public void setName(String name) {
 		this.name = name;

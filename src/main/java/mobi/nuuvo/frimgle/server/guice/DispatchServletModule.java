@@ -20,9 +20,19 @@ import com.google.inject.servlet.ServletModule;
 import com.gwtplatform.dispatch.server.guice.DispatchServiceImpl;
 import com.gwtplatform.dispatch.shared.ActionImpl;
 
+/**
+ * The Class DispatchServletModule.
+ */
 public class DispatchServletModule extends ServletModule {
-    @Override
-    public void configureServlets() {
-        serve("/" + ActionImpl.DEFAULT_SERVICE_NAME + "*").with(DispatchServiceImpl.class);
-    }
+
+	/* (non-Javadoc)
+	 * @see com.google.inject.servlet.ServletModule#configureServlets()
+	 */
+	@Override
+	public void configureServlets() {
+		serve("/" + ActionImpl.DEFAULT_SERVICE_NAME + "*").with(
+				DispatchServiceImpl.class);
+		install(new InjectedRequestFactoryModule());
+		serve("/gwtRequest").with(InjectedRequestFactoryServlet.class);
+	}
 }
