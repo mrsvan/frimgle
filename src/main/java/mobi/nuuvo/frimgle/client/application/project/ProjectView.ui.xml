@@ -1,0 +1,39 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+ xmlns:g='urn:import:com.google.gwt.user.client.ui' xmlns:c='urn:import:com.google.gwt.user.cellview.client'
+ xmlns:b="urn:import:org.gwtbootstrap3.client.ui" ui:generateFormat='com.google.gwt.i18n.rebind.format.PropertiesFormat'
+ ui:generateKeys='com.google.gwt.i18n.rebind.keygen.MD5KeyGenerator'
+ ui:generateLocales='default'>
+
+ <ui:style>
+ td input {
+ 	width: 100%
+ }
+ </ui:style>
+
+ <g:FlowPanel>
+  <b:Row>
+   <b:Column size="SM_4">
+    <b:Paragraph>
+     <b:InputGroup>
+      <b:InputGroupAddon icon="FOLDER" title="Project" />
+      <b:TextBox placeholder="New project name" autocomplete="false"
+       title="Enter a new project name to add to your list of projects"
+       ui:field="nameTextBox" />
+      <b:InputGroupButton>
+       <b:Button type="SUCCESS" icon="PLUS" title="Add project"
+        ui:field="saveButton" />
+      </b:InputGroupButton>
+     </b:InputGroup>
+    </b:Paragraph>
+    <b:Paragraph>
+     <b:CellTable bordered="false" condensed="false" hover="true"
+      width="100%" ui:field="table" pageSize="1000" />
+    </b:Paragraph>
+   </b:Column>
+   <b:Column size="SM_8" ui:field="campaignList">
+   </b:Column>
+  </b:Row>
+ </g:FlowPanel>
+</ui:UiBinder>
