@@ -35,8 +35,6 @@
         </profile>
     </profiles>
     <properties>
-        <gaeversion>${project.version}</gaeversion>
-
         <!-- client -->
         <gwt.version>2.6.1</gwt.version>
         <gwtp.version>1.2.1</gwtp.version>
@@ -287,8 +285,8 @@
                 <configuration>
                     <releaseProfiles>release</releaseProfiles>
                     <allowTimestampedSnapshots>true</allowTimestampedSnapshots>
-                    <goals>appengine:update</goals>
-                    <preparationGoals>install</preparationGoals>
+                    <goals>install</goals>
+                    <preparationGoals>package install</preparationGoals>
                 </configuration>
             </plugin>
             <plugin>
@@ -311,8 +309,7 @@
                         </goals>
                         <configuration>
                             <source>
-                                def gaeversion = project.version.replace('.', '-').toLowerCase()
-                                project.properties.setProperty('gaeversion', gaeversion)
+                                project.properties.gaeversion = project.version.replace('.', '-').toLowerCase()
                             </source>
                         </configuration>
                     </execution>
@@ -336,6 +333,7 @@
                     <replacements>
                         <replacement>
                             <token>gaeversion</token>
+                            <!--suppress MavenModelInspection -->
                             <value>${gaeversion}</value>
                         </replacement>
                     </replacements>
