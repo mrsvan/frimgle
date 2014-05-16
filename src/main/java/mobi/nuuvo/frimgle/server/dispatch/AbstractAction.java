@@ -16,16 +16,16 @@
 
 package mobi.nuuvo.frimgle.server.dispatch;
 
-import com.gwtplatform.dispatch.server.ExecutionContext;
-import com.gwtplatform.dispatch.server.actionhandler.ActionHandler;
-import com.gwtplatform.dispatch.shared.Action;
+import com.gwtplatform.dispatch.rpc.server.ExecutionContext;
+import com.gwtplatform.dispatch.rpc.server.actionhandler.ActionHandler;
+import com.gwtplatform.dispatch.rpc.shared.Action;
+import com.gwtplatform.dispatch.rpc.shared.Result;
 import com.gwtplatform.dispatch.shared.ActionException;
-import com.gwtplatform.dispatch.shared.Result;
 
 /**
  * Simple abstract super-class for {@link com.gwtplatform.dispatch.server.actionhandler.ActionHandler} implementations
  * that forces the {@link com.gwtplatform.dispatch.shared.Action} class to be passed in as a constructor to the handler.
- * 
+ *
  * @param <A> The {@link com.gwtplatform.dispatch.shared.Action} type.
  * @param <R> The {@link com.gwtplatform.dispatch.shared.Result} type.
  */

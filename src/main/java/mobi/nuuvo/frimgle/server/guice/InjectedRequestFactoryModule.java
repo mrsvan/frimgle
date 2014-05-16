@@ -4,6 +4,8 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 
+import mobi.nuuvo.frimgle.server.dao.ProjectDao;
+
 import com.google.inject.AbstractModule;
 import com.google.inject.Injector;
 import com.google.inject.Provides;
@@ -29,6 +31,7 @@ public class InjectedRequestFactoryModule extends AbstractModule {
 		bind(ExceptionHandler.class).to(DefaultExceptionHandler.class);
 		bind(ServiceLayerDecorator.class).to(
 				InjectedServiceLayerDecorator.class);
+		bind(ProjectDao.class).in(Singleton.class);
 		bind(InjectingServiceLocator.class);
 	}
 

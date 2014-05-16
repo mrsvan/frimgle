@@ -44,11 +44,11 @@ public class UserDao extends BaseDao<User> {
 	}
 
 	@Override
-	public Collection<User> put(Iterable<User> entities) {
+	public Collection<User> putAll(Iterable<User> entities) {
 		for (User user : entities) {
 			ensureHasAccount(user);
 		}
-		return super.put(entities);
+		return super.putAll(entities);
 	}
 
 	@Override

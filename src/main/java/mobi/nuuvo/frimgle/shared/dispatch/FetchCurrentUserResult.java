@@ -16,11 +16,16 @@
 
 package mobi.nuuvo.frimgle.shared.dispatch;
 
+import com.gwtplatform.dispatch.rpc.shared.Result;
+
 import mobi.nuuvo.frimgle.shared.dto.CurrentUserDto;
-import com.gwtplatform.dispatch.shared.Result;
 
 public class FetchCurrentUserResult implements Result {
-    private CurrentUserDto currentUser;
+    /**
+	 *
+	 */
+	private static final long serialVersionUID = 1L;
+	private CurrentUserDto currentUser;
 
     public FetchCurrentUserResult() {
     }

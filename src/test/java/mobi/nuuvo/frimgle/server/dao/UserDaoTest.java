@@ -45,7 +45,7 @@ public class UserDaoTest extends AbstractDaoTest<User, UserDao> {
 		assertTrue("Failed to find a user by account", !testDao
 				.findWithAccountEquals(account).isEmpty());
 	}
-
+	
 	@Override
 	protected User newEntity() {
 		return new User();

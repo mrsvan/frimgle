@@ -21,7 +21,7 @@ import com.google.gwt.junit.client.GWTTestCase;
 public class SandboxGwtTest extends GWTTestCase {
     @Override
     public String getModuleName() {
-        return "mobi.nuuvo.frimgle.Project";
+        return "mobi.nuuvo.frimgle.Frimgle";
     }
 
     public void testSandbox() {

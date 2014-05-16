@@ -16,7 +16,7 @@
 
 package mobi.nuuvo.frimgle.shared.dispatch;
 
-import com.gwtplatform.dispatch.shared.UnsecuredActionImpl;
+import com.gwtplatform.dispatch.rpc.shared.UnsecuredActionImpl;
 
 public class FetchCurrentUserAction extends UnsecuredActionImpl<FetchCurrentUserResult> {
     public FetchCurrentUserAction() {

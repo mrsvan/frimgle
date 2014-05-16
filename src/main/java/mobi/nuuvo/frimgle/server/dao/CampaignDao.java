@@ -26,4 +26,14 @@ public class CampaignDao extends BaseDao<Campaign> {
 	public List<Campaign> findWithProjectEquals(final Project project) {
 		return query().ancestor(project).list();
 	}
+
+	/**
+	 * Count with project equals.
+	 *
+	 * @param project the project
+	 * @return the number of campaigns in the project
+	 */
+	public Integer countWithProjectEquals(final Project project) {
+		return query().ancestor(project).count();
+	}
 }

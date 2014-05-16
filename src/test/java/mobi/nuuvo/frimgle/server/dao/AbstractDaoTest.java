@@ -83,7 +83,7 @@ public abstract class AbstractDaoTest<T extends BaseEntity, U extends BaseDao<T>
 		assertTrue("The test datastore config should not contain any entries",
 				testDao.getAll().isEmpty());
 		testDao.put(testEntity);
-		assertTrue("The test datastore config should not contain any entries",
+		assertTrue("We created a test entity, but it can't be found in the datastore...",
 				testDao.getAll().size() == 1);
 	}
 
@@ -102,11 +102,11 @@ public abstract class AbstractDaoTest<T extends BaseEntity, U extends BaseDao<T>
 
 	/**
 	 * Test method for
-	 * {@link mobi.nuuvo.frimgle.server.dao.BaseDao#put(java.lang.Iterable)}.
+	 * {@link mobi.nuuvo.frimgle.server.dao.BaseDao#putAll(java.lang.Iterable)}.
 	 */
 	@Test
 	public void testPutIterableOfT() {
-		testDao.put(ImmutableList.of(testEntity, newEntity(), newEntity()));
+		testDao.putAll(ImmutableList.of(testEntity, newEntity(), newEntity()));
 		assertEquals(3, testDao.findTotalCount().intValue());
 	}
 
@@ -128,7 +128,7 @@ public abstract class AbstractDaoTest<T extends BaseEntity, U extends BaseDao<T>
 	 * {@link mobi.nuuvo.frimgle.server.dao.BaseDao#get(java.lang.Long)}.
 	 */
 	@Test
-	public void testGetLong() {
+	public void testGetString() {
 		testDao.put(testEntity);
 		assertEquals(testEntity, testDao.get(testEntity.getId()));
 	}
@@ -150,7 +150,7 @@ public abstract class AbstractDaoTest<T extends BaseEntity, U extends BaseDao<T>
 	 * {@link mobi.nuuvo.frimgle.server.dao.BaseDao#exists(java.lang.Long)}.
 	 */
 	@Test
-	public void testExistsLong() {
+	public void testExistsString() {
 		testDao.put(testEntity);
 		assertTrue(testDao.exists(testEntity.getId()));
 	}
@@ -161,7 +161,7 @@ public abstract class AbstractDaoTest<T extends BaseEntity, U extends BaseDao<T>
 	 */
 	@Test
 	public void testGetSubset() {
-		testDao.put(ImmutableList.of(testEntity, newEntity(), newEntity()));
+		testDao.putAll(ImmutableList.of(testEntity, newEntity(), newEntity()));
 		assertEquals(3, testDao.findTotalCount().intValue());
 		assertTrue(!testDao.getSubset(ImmutableList.of(testEntity.getId()))
 				.isEmpty());
@@ -174,7 +174,7 @@ public abstract class AbstractDaoTest<T extends BaseEntity, U extends BaseDao<T>
 	 */
 	@Test
 	public void testGetSubsetMap() {
-		testDao.put(ImmutableList.of(testEntity, newEntity(), newEntity()));
+		testDao.putAll(ImmutableList.of(testEntity, newEntity(), newEntity()));
 		assertEquals(3, testDao.findTotalCount().intValue());
 		assertEquals(
 				testEntity,
@@ -236,7 +236,7 @@ public abstract class AbstractDaoTest<T extends BaseEntity, U extends BaseDao<T>
 	 */
 	@Test
 	public void testGetListOfKeyOfT() {
-		testDao.put(ImmutableList.of(testEntity, newEntity(), newEntity()));
+		testDao.putAll(ImmutableList.of(testEntity, newEntity(), newEntity()));
 		assertEquals(3, testDao.findTotalCount().intValue());
 		assertTrue(!testDao.get(ImmutableList.of(Key.create(testEntity)))
 				.isEmpty());
@@ -247,7 +247,7 @@ public abstract class AbstractDaoTest<T extends BaseEntity, U extends BaseDao<T>
 	 */
 	@Test
 	public void testOfy() {
-		assertNotNull(testDao.ofy());
+		assertNotNull(BaseDao.ofy());
 	}
 
 	/**

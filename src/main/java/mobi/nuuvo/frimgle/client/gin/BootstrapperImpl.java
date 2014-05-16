@@ -22,7 +22,9 @@ import mobi.nuuvo.frimgle.client.dispatch.AsyncCallbackImpl;
 import mobi.nuuvo.frimgle.shared.dispatch.FetchCurrentUserAction;
 import mobi.nuuvo.frimgle.shared.dispatch.FetchCurrentUserResult;
 import mobi.nuuvo.frimgle.shared.dto.CurrentUserDto;
-import com.gwtplatform.dispatch.shared.DispatchAsync;
+
+import com.google.gwt.user.client.ui.RootPanel;
+import com.gwtplatform.dispatch.rpc.shared.DispatchAsync;
 import com.gwtplatform.mvp.client.Bootstrapper;
 import com.gwtplatform.mvp.client.proxy.PlaceManager;
 
@@ -60,7 +62,7 @@ public class BootstrapperImpl implements Bootstrapper {
 
     private void onFetchCurrentUserSuccess(CurrentUserDto currentUser) {
         currentUserDto.copyFrom(currentUser);
-
+    	RootPanel.get("loading").setVisible(false);
         placeManager.revealCurrentPlace();
     }
 }

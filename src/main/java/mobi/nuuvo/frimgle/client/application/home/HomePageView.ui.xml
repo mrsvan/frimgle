@@ -1,4 +1,75 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
-             xmlns:g='urn:import:com.google.gwt.user.client.ui'>
-    <g:HTMLPanel>Hello World!</g:HTMLPanel>
+ xmlns:g='urn:import:com.google.gwt.user.client.ui' xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
+ <b:Container>
+  <b:Jumbotron>
+   <b:Heading size="1">Collect hot leads from your video.</b:Heading>
+   <b:Heading size="2">An innovative video ad format for Facebook
+    advertisement</b:Heading>
+  </b:Jumbotron>
+  <b:FluidContainer>
+   <b:Row>
+    <b:Heading size="1">Start now!</b:Heading>
+   </b:Row>
+   <b:Row>
+    <b:Column size="XS_12,SM_6,MD_3,LG_2">
+     <b:Lead>Login to your account</b:Lead>
+     <b:Paragraph>
+      Click on the "Log In" link to access your account and
+      start using Frimgle!
+     </b:Paragraph>
+    </b:Column>
+    <b:Column size="XS_12,SM_6,MD_3,LG_2">
+     <b:Lead>Create a new project</b:Lead>
+     <b:Paragraph>
+      In the projects section, create a new
+      project with a
+      name that reflects the content of your upcoming campaigns.
+     </b:Paragraph>
+    </b:Column>
+    <b:Column size="XS_12,SM_6,MD_3,LG_2">
+     <b:Lead>Create a new campaign by uploading your
+      video</b:Lead>
+     <b:Paragraph>
+      Based on our experience, we’ll recommend you on the
+      video, length,
+      content and feeling. Don’t worry, we want your
+      success.
+     </b:Paragraph>
+    </b:Column>
+    <b:Column size="XS_12,SM_6,MD_3,LG_2">
+     <b:Lead>Choose your call-to-action</b:Lead>
+     <b:Paragraph>
+      Choosing a Call-To-Action is not just clicking a box.
+      The copy has
+      be to clear and in line with your product, your target
+      and your
+      existing communication.
+     </b:Paragraph>
+    </b:Column>
+    <b:Column size="XS_12,SM_6,MD_3,LG_2">
+     <b:Lead>Test it! Share it! Spread it!</b:Lead>
+     <b:Paragraph>
+      Once the technical part is done, it’s time for testing
+      with your
+      team. You are ready now to use it on all your existing
+      channels:
+      Facebook, twitter, LinkedIn, your websites and your
+      advertising
+      partners
+     </b:Paragraph>
+    </b:Column>
+    <b:Column size="XS_12,SM_6,MD_3,LG_2">
+     <b:Lead>Close sales</b:Lead>
+     <b:Paragraph>
+      Throughout the campaign, you can monitor your success.
+      Each contact
+      delivered to you is directly interested in your
+      product, right now
+      -
+      Don’t make them wait, they are asking to buy!
+     </b:Paragraph>
+    </b:Column>
+   </b:Row>
+  </b:FluidContainer>
+ </b:Container>
 </ui:UiBinder>

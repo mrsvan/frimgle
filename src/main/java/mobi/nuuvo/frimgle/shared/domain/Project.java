@@ -16,6 +16,8 @@
 
 package mobi.nuuvo.frimgle.shared.domain;
 
+import java.util.Date;
+
 import com.googlecode.objectify.Ref;
 import com.googlecode.objectify.annotation.Cache;
 import com.googlecode.objectify.annotation.Entity;
@@ -35,6 +37,10 @@ public class Project extends BaseEntity {
 
 	/** The name. */
 	private String name;
+
+	/** The creation date */
+	@Index
+	Date dateCreated = new Date();
 
 	/** The account. */
 	@Load

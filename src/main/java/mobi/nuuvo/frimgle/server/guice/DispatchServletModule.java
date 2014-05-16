@@ -16,16 +16,20 @@
 
 package mobi.nuuvo.frimgle.server.guice;
 
+import mobi.nuuvo.frimgle.server.appcache.ManifestServlet;
+
 import com.google.inject.servlet.ServletModule;
-import com.gwtplatform.dispatch.server.guice.DispatchServiceImpl;
-import com.gwtplatform.dispatch.shared.ActionImpl;
+import com.gwtplatform.dispatch.rpc.server.guice.DispatchServiceImpl;
+import com.gwtplatform.dispatch.rpc.shared.ActionImpl;
 
 /**
  * The Class DispatchServletModule.
  */
 public class DispatchServletModule extends ServletModule {
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 *
 	 * @see com.google.inject.servlet.ServletModule#configureServlets()
 	 */
 	@Override
@@ -34,5 +38,6 @@ public class DispatchServletModule extends ServletModule {
 				DispatchServiceImpl.class);
 		install(new InjectedRequestFactoryModule());
 		serve("/gwtRequest").with(InjectedRequestFactoryServlet.class);
+		serve("/frimgle.appcache").with(ManifestServlet.class);
 	}
 }

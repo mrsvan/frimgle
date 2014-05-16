@@ -84,7 +84,7 @@ abstract class BaseDao<T extends BaseEntity> {
 	 *            the entities
 	 * @return the collection
 	 */
-	public Collection<T> put(Iterable<T> entities) {
+	public Collection<T> putAll(Iterable<T> entities) {
 		for (T entity : entities) {
 			entity.setVersion(entity.getVersion() + 1);
 		}

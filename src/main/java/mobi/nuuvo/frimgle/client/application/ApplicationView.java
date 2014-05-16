@@ -18,6 +18,8 @@ package mobi.nuuvo.frimgle.client.application;
 
 import javax.inject.Inject;
 
+import org.gwtbootstrap3.client.ui.Container;
+
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.IsWidget;
@@ -32,7 +34,7 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
     @UiField
     SimplePanel header;
     @UiField
-    SimplePanel main;
+    Container main;
 
     @Inject
     public ApplicationView(Binder uiBinder) {
@@ -44,7 +46,8 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
         if (slot == ApplicationPresenter.SLOT_HeaderPresenter) {
             header.setWidget(content);
         } else if (slot == ApplicationPresenter.SLOT_SetMainContent) {
-            main.setWidget(content);
+        	main.clear();
+            main.add(content);
         } else {
             super.setInSlot(slot, content);
         }

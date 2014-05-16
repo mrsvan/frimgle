@@ -18,7 +18,8 @@ package mobi.nuuvo.frimgle.server.guice;
 
 import mobi.nuuvo.frimgle.server.authentication.AuthenticationModule;
 import mobi.nuuvo.frimgle.server.dispatch.DispatchHandlersModule;
-import com.gwtplatform.dispatch.server.guice.HandlerModule;
+
+import com.gwtplatform.dispatch.rpc.server.guice.HandlerModule;
 
 public class ServerModule extends HandlerModule {
     @Override

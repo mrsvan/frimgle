@@ -16,15 +16,32 @@
 
 package mobi.nuuvo.frimgle.client.place;
 
+/**
+ * This class contains the constant name tokens for navigating within the
+ * application.
+ *
+ * @author "Stefaan Vanderheyden (svd@nuuvo.mobi)"
+ *
+ */
 public class NameTokens {
-    public static final String home = "!home";
-    public static final String admin = "admin";
+	public static final String HOME = "home";
+	public static final String PROJECTS = "projects";
+	public static final String CAMPAIGN = "campaign";
 
-    public static String getHome() {
-        return home;
-    }
+	public static class EntityParameters {
+		public static final String ID = "id";
+	}
 
-    public static final String getAdmin() {
-        return admin;
-    }
+	public static class ProjectsParameters extends EntityParameters {
+	}
+
+	public static class CampaignParameters extends EntityParameters {
+	}
+
+	/**
+	 * NameTokens is a utility class with only static methods.
+	 */
+	protected NameTokens() {
+		// Don't do anything;
+	}
 }

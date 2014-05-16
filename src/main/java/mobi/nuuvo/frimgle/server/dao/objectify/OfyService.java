@@ -19,7 +19,6 @@ package mobi.nuuvo.frimgle.server.dao.objectify;
 import mobi.nuuvo.frimgle.shared.domain.Account;
 import mobi.nuuvo.frimgle.shared.domain.Campaign;
 import mobi.nuuvo.frimgle.shared.domain.Project;
-import mobi.nuuvo.frimgle.shared.domain.Task;
 import mobi.nuuvo.frimgle.shared.domain.User;
 
 import com.googlecode.objectify.Objectify;
@@ -27,23 +26,23 @@ import com.googlecode.objectify.ObjectifyFactory;
 import com.googlecode.objectify.ObjectifyService;
 
 /**
- * For use of: import static com.sceneverse.shozon.server.dao.objectify.OfyService.ofy;
+ * For use of: import static
+ * com.sceneverse.shozon.server.dao.objectify.OfyService.ofy;
  */
 public class OfyService {
-    static {
-    	factory().register(Account.class);
-    	factory().register(Campaign.class);
-    	factory().register(Project.class);
-        factory().register(Task.class);
-        factory().register(User.class);
+	static {
+		factory().register(Account.class);
+		factory().register(Campaign.class);
+		factory().register(Project.class);
+		factory().register(User.class);
 
-    }
+	}
 
-    public static Objectify ofy() {
-        return ObjectifyService.ofy();
-    }
+	public static Objectify ofy() {
+		return ObjectifyService.ofy();
+	}
 
-    public static ObjectifyFactory factory() {
-        return ObjectifyService.factory();
-    }
+	public static ObjectifyFactory factory() {
+		return ObjectifyService.factory();
+	}
 }

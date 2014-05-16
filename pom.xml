@@ -10,23 +10,46 @@
  <name>GWTP AppEngine Objectify</name>
  <description>GWTP AppEngine Objectify with dispatch and login</description>
 
+ <repositories>
+  <repository>
+   <id>sonatype-nexus-snapshots</id>
+   <url>http://oss.sonatype.org/content/repositories/snapshots</url>
+   <snapshots>
+    <enabled>true</enabled>
+   </snapshots>
+   <releases>
+    <enabled>false</enabled>
+   </releases>
+  </repository>
+ </repositories>
+
+ <profiles>
+  <profile>
+   <id>release</id>
+   <properties>
+    <gwt.style>OBF</gwt.style>
+    <gwt.module>mobi.nuuvo.frimgle.Frimgle</gwt.module>
+   </properties>
+  </profile>
+ </profiles>
  <properties>
   <!-- client -->
-  <gwt.version>2.5.1</gwt.version>
-  <gwtp.version>1.0</gwtp.version>
-  <gin.version>2.0.0</gin.version>
-  <arcbees-core.version>1.0-SNAPSHOT</arcbees-core.version>
-  <gwt.style>OBF</gwt.style>
+  <gwt.version>2.6.1</gwt.version>
+  <gwtp.version>1.2.1</gwtp.version>
+  <gin.version>2.1.2</gin.version>
+  <gwtbootstrap3.version>0.7-SNAPSHOT</gwtbootstrap3.version>
+  <gwt.style>DETAILED</gwt.style>
+  <gwt-appcache.version>1.0.4</gwt-appcache.version>
+  <gwt.module>mobi.nuuvo.frimgle.Frimgle-dev</gwt.module>
 
   <!-- server -->
-  <gae.version>1.9.2</gae.version>
+  <gae.version>1.9.4</gae.version>
   <guice.version>3.0</guice.version>
-  <objectify.version>4.0.1</objectify.version>
+  <objectify.version>5.0.2</objectify.version>
   <persistence-api.version>1.0.2</persistence-api.version>
   <servlet-api.version>2.5</servlet-api.version>
-  <objectify.version>4.0.1</objectify.version>
   <javax.validation.version>1.0.0.GA</javax.validation.version>
-  <guava-version>16.0.1</guava-version>
+  <guava-version>17.0</guava-version>
 
   <!-- testing -->
   <junit.version>4.11</junit.version>
@@ -46,8 +69,6 @@
 
   <webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
  </properties>
-
-
 
  <dependencies>
   <!-- Google Web Toolkit dependencies -->
@@ -69,6 +90,23 @@
    <scope>provided</scope>
   </dependency>
   <dependency>
+   <groupId>org.realityforge.gwt.appcache</groupId>
+   <artifactId>gwt-appcache-client</artifactId>
+   <version>${gwt-appcache.version}</version>
+   <scope>provided</scope>
+  </dependency>
+  <dependency>
+   <groupId>org.realityforge.gwt.appcache</groupId>
+   <artifactId>gwt-appcache-linker</artifactId>
+   <version>${gwt-appcache.version}</version>
+   <scope>provided</scope>
+  </dependency>
+  <dependency>
+   <groupId>org.realityforge.gwt.appcache</groupId>
+   <artifactId>gwt-appcache-server</artifactId>
+   <version>${gwt-appcache.version}</version>
+  </dependency>
+  <dependency>
    <groupId>com.google.web.bindery</groupId>
    <artifactId>requestfactory-server</artifactId>
    <version>${gwt.version}</version>
@@ -80,6 +118,23 @@
    <artifactId>hibernate-validator</artifactId>
    <version>4.3.1.Final</version>
   </dependency>
+  <dependency>
+   <groupId>org.gwtbootstrap3</groupId>
+   <artifactId>gwtbootstrap3</artifactId>
+   <version>${gwtbootstrap3.version}</version>
+   <scope>provided</scope>
+  </dependency>
+  <dependency>
+   <groupId>org.gwtbootstrap3</groupId>
+   <artifactId>gwtbootstrap3-extras</artifactId>
+   <version>${gwtbootstrap3.version}</version>
+   <scope>provided</scope>
+  </dependency>
+  <dependency>
+   <groupId>com.googlecode.objectify</groupId>
+   <artifactId>objectify-gwt</artifactId>
+   <version>1.0</version>
+  </dependency>
 
   <!-- GWT-Platform dependencies -->
   <dependency>
@@ -90,18 +145,18 @@
   </dependency>
   <dependency>
    <groupId>com.gwtplatform</groupId>
-   <artifactId>gwtp-dispatch-client</artifactId>
+   <artifactId>gwtp-dispatch-rpc-client</artifactId>
    <version>${gwtp.version}</version>
    <scope>provided</scope>
   </dependency>
   <dependency>
    <groupId>com.gwtplatform</groupId>
-   <artifactId>gwtp-dispatch-server-guice</artifactId>
+   <artifactId>gwtp-dispatch-rpc-server-guice</artifactId>
    <version>${gwtp.version}</version>
   </dependency>
   <dependency>
    <groupId>com.gwtplatform</groupId>
-   <artifactId>gwtp-dispatch-shared</artifactId>
+   <artifactId>gwtp-dispatch-rpc-shared</artifactId>
    <version>${gwtp.version}</version>
   </dependency>
   <dependency>
@@ -226,6 +281,7 @@
     <groupId>org.apache.maven.plugins</groupId>
     <artifactId>maven-release-plugin</artifactId>
     <configuration>
+     <releaseProfiles>release</releaseProfiles>
      <allowTimestampedSnapshots>true</allowTimestampedSnapshots>
      <goals>install</goals>
      <preparationGoals>package install</preparationGoals>
@@ -368,7 +424,7 @@
      <includes>**/*GwtTest.java</includes>
      <mode>htmlunit</mode>
 
-     <extraJvmArgs>-Xss1024K -Xmx1024M -XX:MaxPermSize=256M</extraJvmArgs>
+     <extraJvmArgs>-Xss64M -Xmx1024M -XX:MaxPermSize=1024M</extraJvmArgs>
      <logLevel>INFO</logLevel>
      <style>${gwt.style}</style>
 
@@ -380,9 +436,9 @@
      <appEngineHome>${gae.home}</appEngineHome>
      <extraJvmArgs>-Dappengine.sdk.root=${gae.home}</extraJvmArgs>
 
-     <runTarget>Project.html</runTarget>
+     <runTarget>frimgle.html</runTarget>
      <modules>
-      <module>mobi.nuuvo.frimgle.Project</module>
+      <module>${gwt.module}</module>
      </modules>
     </configuration>
     <executions>
@@ -401,6 +457,11 @@
     <artifactId>appengine-maven-plugin</artifactId>
     <version>${gae.version}</version>
     <configuration>
+     <jvmFlags>
+      <jvmFlag>-Xdebug</jvmFlag>
+      <jvmFlag>-Xrunjdwp:transport=dt_socket,address=1044,server=y,suspend=y
+      </jvmFlag>
+     </jvmFlags>
      <splitJars>true</splitJars>
     </configuration>
    </plugin>

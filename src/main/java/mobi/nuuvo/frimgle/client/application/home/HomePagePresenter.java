@@ -17,58 +17,33 @@
 package mobi.nuuvo.frimgle.client.application.home;
 
 import mobi.nuuvo.frimgle.client.application.ApplicationPresenter;
-import mobi.nuuvo.frimgle.client.dispatch.AsyncCallbackImpl;
 import mobi.nuuvo.frimgle.client.place.NameTokens;
-import mobi.nuuvo.frimgle.shared.dispatch.FetchTaskAction;
-import mobi.nuuvo.frimgle.shared.dispatch.FetchTaskResult;
-import mobi.nuuvo.frimgle.shared.domain.Task;
+
 import com.google.inject.Inject;
 import com.google.web.bindery.event.shared.EventBus;
-import com.gwtplatform.dispatch.shared.DispatchAsync;
 import com.gwtplatform.mvp.client.Presenter;
 import com.gwtplatform.mvp.client.View;
 import com.gwtplatform.mvp.client.annotations.NameToken;
 import com.gwtplatform.mvp.client.annotations.ProxyStandard;
 import com.gwtplatform.mvp.client.proxy.ProxyPlace;
 
-public class HomePagePresenter extends Presenter<HomePagePresenter.MyView, HomePagePresenter.MyProxy> {
-    public interface MyView extends View {
-    }
+public class HomePagePresenter extends
+		Presenter<HomePagePresenter.MyView, HomePagePresenter.MyProxy> {
+	public interface MyView extends View {
+	}
 
-    @ProxyStandard
-    @NameToken(NameTokens.home)
-    public interface MyProxy extends ProxyPlace<HomePagePresenter> {
-    }
+	@ProxyStandard
+	@NameToken(NameTokens.HOME)
+	public interface MyProxy extends ProxyPlace<HomePagePresenter> {
+	}
 
-    private DispatchAsync dispatcher;
+	@Inject
+	public HomePagePresenter(EventBus eventBus, MyView view, MyProxy proxy) {
+		super(eventBus, view, proxy, ApplicationPresenter.SLOT_SetMainContent);
+	}
 
-    @Inject
-    public HomePagePresenter(EventBus eventBus, MyView view, MyProxy proxy, DispatchAsync dispatcher) {
-        super(eventBus, view, proxy, ApplicationPresenter.SLOT_SetMainContent);
-
-        this.dispatcher = dispatcher;
-    }
-
-    @Override
-    protected void onReveal() {
-        super.onReveal();
-
-        fetchTask();
-    }
-
-    private void fetchTask() {
-        FetchTaskAction action = new FetchTaskAction();
-        action.setTaskId(1l);
-
-        dispatcher.execute(action, new AsyncCallbackImpl<FetchTaskResult>() {
-            @Override
-            public void onSuccess(FetchTaskResult result) {
-                displayTask(result.getTask());
-            }
-        });
-    }
-
-    private void displayTask(Task task) {
-        System.out.println("task=" + task);
-    }
+	@Override
+	protected void onReveal() {
+		super.onReveal();
+	}
 }

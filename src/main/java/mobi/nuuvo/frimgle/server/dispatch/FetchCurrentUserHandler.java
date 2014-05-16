@@ -20,8 +20,9 @@ import mobi.nuuvo.frimgle.server.authentication.CurrentUserDtoProvider;
 import mobi.nuuvo.frimgle.shared.dispatch.FetchCurrentUserAction;
 import mobi.nuuvo.frimgle.shared.dispatch.FetchCurrentUserResult;
 import mobi.nuuvo.frimgle.shared.dto.CurrentUserDto;
+
 import com.google.inject.Inject;
-import com.gwtplatform.dispatch.server.ExecutionContext;
+import com.gwtplatform.dispatch.rpc.server.ExecutionContext;
 import com.gwtplatform.dispatch.shared.ActionException;
 
 public class FetchCurrentUserHandler extends AbstractAction<FetchCurrentUserAction, FetchCurrentUserResult> {
