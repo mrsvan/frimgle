@@ -1,162 +1,162 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
- xmlns:g='urn:import:com.google.gwt.user.client.ui' xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
- <b:Form>
-  <b:Legend>Edit campaign</b:Legend>
-  <b:Row>
-   <b:Column size="SM_8">
-    <b:FieldSet>
-     <b:FormGroup>
-      <b:FormLabel for="name">Name</b:FormLabel>
-      <b:TextBox placeholder="Name" b:id="name" ui:field="name" />
-     </b:FormGroup>
+             xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
+    <b:Form>
+        <b:Legend>Edit campaign</b:Legend>
+        <b:Row>
+            <b:Column size="SM_8">
+                <b:FieldSet>
+                    <b:FormGroup>
+                        <b:FormLabel for="name">Name</b:FormLabel>
+                        <b:TextBox placeholder="Name" b:id="name" ui:field="name"/>
+                    </b:FormGroup>
 
-     <b:FormGroup>
-      <b:FormLabel for="logoUrl">Logo</b:FormLabel>
-      <b:TextBox placeholder="Logo URL" b:id="logoUrl"
-       ui:field="logoUrl" />
-     </b:FormGroup>
+                    <b:FormGroup>
+                        <b:FormLabel for="logoUrl">Logo</b:FormLabel>
+                        <b:TextBox placeholder="Logo URL" b:id="logoUrl"
+                                   ui:field="logoUrl"/>
+                    </b:FormGroup>
 
-     <b:FormGroup>
-      <b:FormLabel for="title">Title</b:FormLabel>
-      <b:TextBox placeholder="Title" b:id="title" ui:field="title" />
-     </b:FormGroup>
+                    <b:FormGroup>
+                        <b:FormLabel for="title">Title</b:FormLabel>
+                        <b:TextBox placeholder="Title" b:id="title" ui:field="title"/>
+                    </b:FormGroup>
 
-     <b:FormGroup>
-      <b:FormLabel for="description">Description</b:FormLabel>
-      <b:TextBox placeholder="Description" b:id="description"
-       ui:field="description" />
-     </b:FormGroup>
+                    <b:FormGroup>
+                        <b:FormLabel for="description">Description</b:FormLabel>
+                        <b:TextBox placeholder="Description" b:id="description"
+                                   ui:field="description"/>
+                    </b:FormGroup>
 
-     <b:FormGroup>
-      <b:FormLabel for="videoUrl">Video</b:FormLabel>
-      <b:TextBox placeholder="Video URL" b:id="videoUrl"
-       ui:field="videoUrl" />
-     </b:FormGroup>
-    </b:FieldSet>
-   </b:Column>
+                    <b:FormGroup>
+                        <b:FormLabel for="videoUrl">Video</b:FormLabel>
+                        <b:TextBox placeholder="Video URL" b:id="videoUrl"
+                                   ui:field="videoUrl"/>
+                    </b:FormGroup>
+                </b:FieldSet>
+            </b:Column>
 
-   <b:Column size="SM_4">
-    <b:Paragraph>
-     <b:Button type="INFO" dataToggle="COLLAPSE" dataTarget="#skipText"
-      text="Skip Text" block="true" />
-     <b:Collapse b:id="skipText" toggle="false">
-      <b:Well size="SMALL">
-       <b:FieldSet>
-        <b:FormGroup>
-         <b:FormLabel for="skipText">
-          Skip Text
-         </b:FormLabel>
-         <b:TextBox placeholder="Skip Text" b:id="skipText"
-          ui:field="skipText" />
-        </b:FormGroup>
-       </b:FieldSet>
-      </b:Well>
-     </b:Collapse>
-    </b:Paragraph>
+            <b:Column size="SM_4">
+                <b:Paragraph>
+                    <b:Button type="INFO" dataToggle="COLLAPSE" dataTarget="#skipText"
+                              text="Skip Text" block="true"/>
+                    <b:Collapse b:id="skipText" toggle="false">
+                        <b:Well size="SMALL">
+                            <b:FieldSet>
+                                <b:FormGroup>
+                                    <b:FormLabel for="skipText">
+                                        Skip Text
+                                    </b:FormLabel>
+                                    <b:TextBox placeholder="Skip Text" b:id="skipText"
+                                               ui:field="skipText"/>
+                                </b:FormGroup>
+                            </b:FieldSet>
+                        </b:Well>
+                    </b:Collapse>
+                </b:Paragraph>
 
-    <b:Paragraph>
-     <b:Button type="INFO" dataToggle="COLLAPSE" dataTarget="#cta"
-      text="CTA" block="true" />
-     <b:Collapse b:id="cta" toggle="false">
-      <b:Well size="SMALL">
-       <b:FieldSet>
-        <b:FormGroup>
-         <b:FormLabel for="ctaText">
-          Text
-         </b:FormLabel>
-         <b:TextBox placeholder="Text" b:id="ctaText"
-          ui:field="ctaText" />
-        </b:FormGroup>
-        <b:FormGroup>
-         <b:FormLabel for="ctaBackgroundImgUrl">
-          Background Image
-         </b:FormLabel>
-         <b:TextBox placeholder="Background Image URL" b:id="ctaBackgroundImgUrl"
-          ui:field="ctaBackgroundImgUrl" />
-        </b:FormGroup>
-        <b:FormGroup>
-         <b:FormLabel for="ctaLogoUrl">
-          Logo
-         </b:FormLabel>
-         <b:TextBox placeholder="Logo URL" b:id="ctaLogoUrl"
-          ui:field="ctaLogoUrl" />
-        </b:FormGroup>
-        <b:FormGroup>
-         <b:FormLabel for="ctaBtnColor">
-          Button Color
-         </b:FormLabel>
-         <b:TextBox placeholder="Button Color" b:id="ctaBtnColor"
-          ui:field="ctaBtnColor" />
-        </b:FormGroup>
-       </b:FieldSet>
-      </b:Well>
-     </b:Collapse>
-    </b:Paragraph>
+                <b:Paragraph>
+                    <b:Button type="INFO" dataToggle="COLLAPSE" dataTarget="#cta"
+                              text="CTA" block="true"/>
+                    <b:Collapse b:id="cta" toggle="false">
+                        <b:Well size="SMALL">
+                            <b:FieldSet>
+                                <b:FormGroup>
+                                    <b:FormLabel for="ctaLogoUrl">
+                                        Logo
+                                    </b:FormLabel>
+                                    <b:TextBox placeholder="Logo URL" b:id="ctaLogoUrl"
+                                               ui:field="ctaLogoUrl"/>
+                                </b:FormGroup>
+                                <b:FormGroup>
+                                    <b:FormLabel for="ctaText">
+                                        Text
+                                    </b:FormLabel>
+                                    <b:TextBox placeholder="Text" b:id="ctaText"
+                                               ui:field="ctaText"/>
+                                </b:FormGroup>
+                                <b:FormGroup>
+                                    <b:FormLabel for="ctaBackgroundImgUrl">
+                                        Background Image
+                                    </b:FormLabel>
+                                    <b:TextBox placeholder="Background Image URL" b:id="ctaBackgroundImgUrl"
+                                               ui:field="ctaBackgroundImgUrl"/>
+                                </b:FormGroup>
+                                <b:FormGroup>
+                                    <b:FormLabel for="ctaBtnColor">
+                                        Button Color
+                                    </b:FormLabel>
+                                    <b:TextBox placeholder="Button Color" b:id="ctaBtnColor"
+                                               ui:field="ctaBtnColor"/>
+                                </b:FormGroup>
+                            </b:FieldSet>
+                        </b:Well>
+                    </b:Collapse>
+                </b:Paragraph>
 
-    <b:Paragraph>
-     <b:Button type="INFO" dataToggle="COLLAPSE" dataTarget="#thankYou"
-      text="Thank You" block="true" />
-     <b:Collapse b:id="thankYou" toggle="false">
-      <b:Well size="SMALL">
-       <b:FieldSet>
-        <b:FormGroup>
-         <b:FormLabel for="thnxTxt">
-          Text
-         </b:FormLabel>
-         <b:TextBox placeholder="Text" b:id="thnxTxt"
-          ui:field="thnxTxt" />
-        </b:FormGroup>
-        <b:FormGroup>
-         <b:FormLabel for="thnxBackgroundImgUrl">
-          Background Image
-         </b:FormLabel>
-         <b:TextBox placeholder="Background Image URL" b:id="thnxBackgroundImgUrl"
-          ui:field="thnxBackgroundImgUrl" />
-        </b:FormGroup>
-        <b:FormGroup>
-         <b:FormLabel for="thnxLogoUrl">
-          Logo
-         </b:FormLabel>
-         <b:TextBox placeholder="Logo URL" b:id="thnxLogoUrl"
-          ui:field="thnxLogoUrl" />
-        </b:FormGroup>
-       </b:FieldSet>
-      </b:Well>
-     </b:Collapse>
-    </b:Paragraph>
+                <b:Paragraph>
+                    <b:Button type="INFO" dataToggle="COLLAPSE" dataTarget="#thankYou"
+                              text="Thank You" block="true"/>
+                    <b:Collapse b:id="thankYou" toggle="false">
+                        <b:Well size="SMALL">
+                            <b:FieldSet>
+                                <b:FormGroup>
+                                    <b:FormLabel for="thnxLogoUrl">
+                                        Logo
+                                    </b:FormLabel>
+                                    <b:TextBox placeholder="Logo URL" b:id="thnxLogoUrl"
+                                               ui:field="thnxLogoUrl"/>
+                                </b:FormGroup>
+                                <b:FormGroup>
+                                    <b:FormLabel for="thnxTxt">
+                                        Text
+                                    </b:FormLabel>
+                                    <b:TextBox placeholder="Text" b:id="thnxTxt"
+                                               ui:field="thnxTxt"/>
+                                </b:FormGroup>
+                                <b:FormGroup>
+                                    <b:FormLabel for="thnxBackgroundImgUrl">
+                                        Background Image
+                                    </b:FormLabel>
+                                    <b:TextBox placeholder="Background Image URL" b:id="thnxBackgroundImgUrl"
+                                               ui:field="thnxBackgroundImgUrl"/>
+                                </b:FormGroup>
+                            </b:FieldSet>
+                        </b:Well>
+                    </b:Collapse>
+                </b:Paragraph>
 
-    <b:Paragraph>
-     <b:Button type="INFO" dataToggle="COLLAPSE" dataTarget="#facebookPreview"
-      text="Facebook Preview" block="true" />
-     <b:Collapse b:id="facebookPreview" toggle="false">
-      <b:Well size="SMALL">
-       <b:FieldSet>
-        <b:FormGroup>
-         <b:FormLabel for="facebookThumbnailUrl">
-          Thumbnail
-         </b:FormLabel>
-         <b:TextBox placeholder="Skip Text" b:id="facebookThumbnailUrl"
-          ui:field="facebookThumbnailUrl" />
-        </b:FormGroup>
-        <b:FormGroup>
-         <b:FormLabel for="facebookTitle">
-          Skip Text
-         </b:FormLabel>
-         <b:TextBox placeholder="Skip Text" b:id="facebookTitle"
-          ui:field="facebookTitle" />
-        </b:FormGroup>
-        <b:FormGroup>
-         <b:FormLabel for="facebookDescription">
-          Skip Text
-         </b:FormLabel>
-         <b:TextBox placeholder="Skip Text" b:id="facebookDescription"
-          ui:field="facebookDescription" />
-        </b:FormGroup>
-       </b:FieldSet>
-      </b:Well>
-     </b:Collapse>
-    </b:Paragraph>
-   </b:Column>
-  </b:Row>
- </b:Form>
+                <b:Paragraph>
+                    <b:Button type="INFO" dataToggle="COLLAPSE" dataTarget="#facebookPreview"
+                              text="Facebook Preview" block="true"/>
+                    <b:Collapse b:id="facebookPreview" toggle="false">
+                        <b:Well size="SMALL">
+                            <b:FieldSet>
+                                <b:FormGroup>
+                                    <b:FormLabel for="facebookTitle">
+                                        Title
+                                    </b:FormLabel>
+                                    <b:TextBox placeholder="Title" b:id="facebookTitle"
+                                               ui:field="facebookTitle"/>
+                                </b:FormGroup>
+                                <b:FormGroup>
+                                    <b:FormLabel for="facebookDescription">
+                                        Description
+                                    </b:FormLabel>
+                                    <b:TextBox placeholder="Description" b:id="facebookDescription"
+                                               ui:field="facebookDescription"/>
+                                </b:FormGroup>
+                                <b:FormGroup>
+                                    <b:FormLabel for="facebookThumbnailUrl">
+                                        Thumbnail
+                                    </b:FormLabel>
+                                    <b:TextBox placeholder="Thumbnail URL" b:id="facebookThumbnailUrl"
+                                               ui:field="facebookThumbnailUrl"/>
+                                </b:FormGroup>
+                            </b:FieldSet>
+                        </b:Well>
+                    </b:Collapse>
+                </b:Paragraph>
+            </b:Column>
+        </b:Row>
+    </b:Form>
 </ui:UiBinder>
