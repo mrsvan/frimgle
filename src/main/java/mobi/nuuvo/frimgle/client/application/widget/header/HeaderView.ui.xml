@@ -6,7 +6,7 @@
     <b:NavbarBrand href="#home">
      <object style="height: 25px;" data="frimgle.svg"
       type="image/svg+xml">
-      <img alt="frimgle" src="frimgle.320x98.png"/>
+      <img style="height: 25px;" alt="frimgle" src="frimgle.320x98.png"/>
      </object>
     </b:NavbarBrand>
     <b:NavbarCollapseButton dataTarget="#navbar-collapse" />
