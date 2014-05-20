@@ -14,7 +14,7 @@ public class CampaignEditor extends Composite implements Editor<CampaignProxy> {
     @UiField
     SmartTextBox name;
     @UiField
-    SmartTextBox logoUrl;
+    SmartImageUrlBox logoUrl;
     @UiField
     SmartTextBox title;
     @UiField
@@ -26,19 +26,19 @@ public class CampaignEditor extends Composite implements Editor<CampaignProxy> {
     @UiField
     SmartTextBox ctaText;
     @UiField
-    SmartTextBox ctaBackgroundImgUrl;
+    SmartImageUrlBox ctaBackgroundImgUrl;
     @UiField
-    SmartTextBox ctaLogoUrl;
+    SmartImageUrlBox ctaLogoUrl;
     @UiField
     SmartTextBox ctaBtnColor;
     @UiField
     SmartTextBox thnxTxt;
     @UiField
-    SmartTextBox thnxBackgroundImgUrl;
+    SmartImageUrlBox thnxBackgroundImgUrl;
     @UiField
-    SmartTextBox thnxLogoUrl;
+    SmartImageUrlBox thnxLogoUrl;
     @UiField
-    SmartTextBox facebookThumbnailUrl;
+    SmartImageUrlBox facebookThumbnailUrl;
     @UiField
     SmartTextBox facebookTitle;
     @UiField

@@ -7,7 +7,7 @@
             <b:Column size="SM_8">
                 <b:FieldSet>
                     <c:SmartTextBox label="Name" placeholder="Name" ui:field="name"/>
-                    <c:SmartTextBox label="Logo" placeholder="Logo URL" ui:field="logoUrl"/>
+                    <c:SmartImageUrlBox label="Logo" placeholder="Logo URL" ui:field="logoUrl"/>
                     <c:SmartTextBox label="Title" placeholder="Title text" ui:field="title"/>
                     <c:SmartTextBox label="Description" placeholder="Description text" ui:field="description"/>
                     <c:SmartTextBox label="Video" placeholder="Video URL" ui:field="videoUrl"/>
@@ -33,9 +33,9 @@
                     <b:Collapse b:id="cta" toggle="false">
                         <b:Well size="SMALL">
                             <b:FieldSet>
-                                <c:SmartTextBox label="Logo" placeholder="Logo URL" ui:field="ctaLogoUrl"/>
+                                <c:SmartImageUrlBox label="Logo" placeholder="Logo URL" ui:field="ctaLogoUrl"/>
                                 <c:SmartTextBox label="Text" placeholder="Text" ui:field="ctaText"/>
-                                <c:SmartTextBox label="Background Image" placeholder="Background Image URL"
+                                <c:SmartImageUrlBox label="Background Image" placeholder="Background Image URL"
                                                 ui:field="ctaBackgroundImgUrl"/>
                                 <c:SmartTextBox label="Button Color" placeholder="Button Color" ui:field="ctaBtnColor"/>
                             </b:FieldSet>
@@ -49,9 +49,9 @@
                     <b:Collapse b:id="thankYou" toggle="false">
                         <b:Well size="SMALL">
                             <b:FieldSet>
-                                <c:SmartTextBox label="Logo" placeholder="Logo URL" ui:field="thnxLogoUrl"/>
+                                <c:SmartImageUrlBox label="Logo" placeholder="Logo URL" ui:field="thnxLogoUrl"/>
                                 <c:SmartTextBox label="Text" placeholder="Text" ui:field="thnxTxt"/>
-                                <c:SmartTextBox label="Background Image" placeholder="Background Image URL"
+                                <c:SmartImageUrlBox label="Background Image" placeholder="Background Image URL"
                                                 ui:field="thnxBackgroundImgUrl"/>
                             </b:FieldSet>
                         </b:Well>
@@ -67,7 +67,7 @@
                                 <c:SmartTextBox label="Title" placeholder="Title text" ui:field="facebookTitle"/>
                                 <c:SmartTextBox label="Description" placeholder="Description text"
                                                 ui:field="facebookDescription"/>
-                                <c:SmartTextBox label="Thumbnail" placeholder="Thumbnail URL"
+                                <c:SmartImageUrlBox label="Thumbnail" placeholder="Thumbnail URL"
                                                 ui:field="facebookThumbnailUrl"/>
                             </b:FieldSet>
                         </b:Well>

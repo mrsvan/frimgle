@@ -4,7 +4,7 @@
 <module rename-to='frimgle'>
     <!-- Inherit the core Web Toolkit stuff. -->
     <inherits name='com.google.gwt.user.User'/>
-    <inherits name="com.google.gwt.place.Place"/>
+
     <!-- GwtBootstrap3 -->
     <inherits name="org.gwtbootstrap3.GwtBootstrap3"/>
     <inherits name="org.gwtbootstrap3.extras.respond.Respond"/>
