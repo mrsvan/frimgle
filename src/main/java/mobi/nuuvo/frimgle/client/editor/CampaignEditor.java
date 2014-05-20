@@ -20,7 +20,7 @@ public class CampaignEditor extends Composite implements Editor<CampaignProxy> {
     @UiField
     SmartTextBox description;
     @UiField
-    SmartTextBox videoUrl;
+    SmartVideoUrlBox videoUrl;
     @UiField
     SmartTextBox skipText;
     @UiField

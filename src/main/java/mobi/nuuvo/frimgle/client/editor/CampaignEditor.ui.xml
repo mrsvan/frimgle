@@ -10,7 +10,7 @@
                     <c:SmartImageUrlBox label="Logo" placeholder="Logo URL" ui:field="logoUrl"/>
                     <c:SmartTextBox label="Title" placeholder="Title text" ui:field="title"/>
                     <c:SmartTextBox label="Description" placeholder="Description text" ui:field="description"/>
-                    <c:SmartTextBox label="Video" placeholder="Video URL" ui:field="videoUrl"/>
+                    <c:SmartVideoUrlBox label="Video" placeholder="Video URL" ui:field="videoUrl"/>
                 </b:FieldSet>
             </b:Column>
 

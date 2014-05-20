@@ -8,19 +8,19 @@ import com.google.gwt.user.client.ui.Widget;
 /**
  * Created by svd on 17/05/14.
  */
-public class SmartImageUrlBox extends SmartBaseUrlBox {
-    private static SmartImageUrlBoxBinder ourUiBinder = GWT.create(SmartImageUrlBoxBinder.class);
+public class SmartVideoUrlBox extends SmartBaseUrlBox {
+    private static SmartVideoUrlBoxBinder ourUiBinder = GWT.create(SmartVideoUrlBoxBinder.class);
 
     @UiField
     @Path("")
-    ImageUrlEditor image;
+    VideoUrlEditor video;
 
-    public SmartImageUrlBox() {
+    public SmartVideoUrlBox() {
         initWidget(ourUiBinder.createAndBindUi(this));
-        attachUpdateHandlers(image);
+        attachUpdateHandlers(video);
     }
 
-    interface SmartImageUrlBoxBinder extends UiBinder<Widget, SmartImageUrlBox> {
+    interface SmartVideoUrlBoxBinder extends UiBinder<Widget, SmartVideoUrlBox> {
     }
 
 }
