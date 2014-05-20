@@ -1,7 +1,5 @@
 package mobi.nuuvo.frimgle.client.application.campaign;
 
-import mobi.nuuvo.frimgle.client.editor.CampaignEditor;
-
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -9,40 +7,56 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
 import com.gwtplatform.mvp.client.ViewWithUiHandlers;
+import mobi.nuuvo.frimgle.client.editor.CampaignEditor;
+import org.gwtbootstrap3.client.ui.Alert;
+import org.gwtbootstrap3.client.ui.Container;
+import org.gwtbootstrap3.client.ui.constants.AlertType;
 
 public class CampaignView extends ViewWithUiHandlers<CampaignUiHandlers>
-		implements CampaignPresenter.MyView {
+        implements CampaignPresenter.MyView {
 
-	private final Widget widget;
+    private final Widget widget;
+    @UiField
+    Container errors;
+    @UiField
+    CampaignEditor campaignEditor;
 
-	public interface Binder extends UiBinder<Widget, CampaignView> {
-	}
+    @Inject
+    public CampaignView(final Binder binder) {
+        widget = binder.createAndBindUi(this);
 
-	@UiField
-	CampaignEditor campaignEditor;
+    }
 
-	@Inject
-	public CampaignView(final Binder binder) {
-		widget = binder.createAndBindUi(this);
-	}
+    @Override
+    public void addError(String errorMsg) {
+        errors.add(new Alert(errorMsg, AlertType.WARNING));
+    }
 
-	@Override
-	public Widget asWidget() {
-		return widget;
-	}
+    @Override
+    public void clearErrors() {
+        errors.clear();
+    }
 
-	@UiHandler("saveBtn")
-	void onSaveButtonClicked(ClickEvent event) {
-		getUiHandlers().save();
-	}
+    @Override
+    public Widget asWidget() {
+        return widget;
+    }
 
-	@UiHandler("cancelBtn")
-	void onCancelButtonClicked(ClickEvent event) {
-		getUiHandlers().cancel();
-	}
+    @UiHandler("saveBtn")
+    void onSaveButtonClicked(ClickEvent event) {
+        getUiHandlers().save();
+    }
 
-	@Override
-	public CampaignEditor asEditor() {
-		return campaignEditor;
-	}
+    @UiHandler("cancelBtn")
+    void onCancelButtonClicked(ClickEvent event) {
+        getUiHandlers().cancel();
+    }
+
+    @Override
+    public CampaignEditor asEditor() {
+        return campaignEditor;
+    }
+
+    public interface Binder extends UiBinder<Widget, CampaignView> {
+    }
 }

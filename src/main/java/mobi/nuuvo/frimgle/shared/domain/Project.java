@@ -16,14 +16,11 @@
 
 package mobi.nuuvo.frimgle.shared.domain;
 
-import java.util.Date;
-
 import com.googlecode.objectify.Ref;
-import com.googlecode.objectify.annotation.Cache;
-import com.googlecode.objectify.annotation.Entity;
-import com.googlecode.objectify.annotation.Index;
-import com.googlecode.objectify.annotation.Load;
-import com.googlecode.objectify.annotation.Parent;
+import com.googlecode.objectify.annotation.*;
+import org.hibernate.validator.constraints.NotBlank;
+
+import java.util.Date;
 
 /**
  * The Class Project.
@@ -32,63 +29,67 @@ import com.googlecode.objectify.annotation.Parent;
 @Cache
 public class Project extends BaseEntity {
 
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = -5566762732379759508L;
+    /**
+     * The Constant serialVersionUID.
+     */
+    private static final long serialVersionUID = -5566762732379759508L;
+    /**
+     * The creation date
+     */
+    @Index
+    Date dateCreated = new Date();
+    /**
+     * The name.
+     */
+    @NotBlank(message = "You must provide a non-blank project name.")
+    private String name;
+    /**
+     * The account.
+     */
+    @Load
+    @Parent
+    @Index
+    private Ref<Account> account;
 
-	/** The name. */
-	private String name;
+    /**
+     * Instantiates a new project.
+     */
+    public Project() {
+    }
 
-	/** The creation date */
-	@Index
-	Date dateCreated = new Date();
+    /**
+     * Gets the name.
+     *
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
 
-	/** The account. */
-	@Load
-	@Parent
-	@Index
-	private Ref<Account> account;
+    /**
+     * Sets the name.
+     *
+     * @param name the new name
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	/**
-	 * Instantiates a new project.
-	 */
-	public Project() {
-	}
+    /**
+     * Gets the account.
+     *
+     * @return the account
+     */
+    public Account getAccount() {
+        return account == null ? null : account.get();
+    }
 
-	/**
-	 * Gets the name.
-	 *
-	 * @return the name
-	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * Sets the name.
-	 *
-	 * @param name
-	 *            the new name
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	/**
-	 * Gets the account.
-	 *
-	 * @return the account
-	 */
-	public Account getAccount() {
-		return account == null ? null : account.get();
-	}
-
-	/**
-	 * Sets the account.
-	 *
-	 * @param account
-	 *            the new account
-	 */
-	public void setAccount(Account account) {
-		this.account = safeRef(account);
-	}
+    /**
+     * Sets the account.
+     *
+     * @param account the new account
+     */
+    public void setAccount(Account account) {
+        this.account = safeRef(account);
+    }
 }

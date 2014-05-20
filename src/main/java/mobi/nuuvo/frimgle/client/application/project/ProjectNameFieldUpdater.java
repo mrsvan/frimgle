@@ -1,11 +1,10 @@
 package mobi.nuuvo.frimgle.client.application.project;
 
-import mobi.nuuvo.frimgle.client.requestfactory.proxy.ProjectProxy;
-import mobi.nuuvo.frimgle.client.requestfactory.requestcontext.ProjectRequestContext;
-
 import com.google.gwt.cell.client.FieldUpdater;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
+import mobi.nuuvo.frimgle.client.requestfactory.proxy.ProjectProxy;
+import mobi.nuuvo.frimgle.client.requestfactory.requestcontext.ProjectRequestContext;
 
 /**
  * Updater for the editable list name column. Must be in presenter because needs
@@ -21,10 +20,11 @@ public class ProjectNameFieldUpdater implements FieldUpdater<ProjectProxy, Strin
 	}
 
 	@Override
-	public void update(int index, ProjectProxy project, final String newName) {
-		ProjectRequestContext projectRequest = projectRequestProvider.get();
-		ProjectProxy editable = projectRequest.edit(project);
-		editable.setName(newName);
-		projectRequest.putMy(editable).fire();
-	}
+    public void update(int index, final ProjectProxy project, final String newName) {
+        ProjectRequestContext projectRequest = projectRequestProvider.get();
+        final String oldName = project.getName();
+        ProjectProxy editable = projectRequest.edit(project);
+        editable.setName(newName);
+        projectRequest.putMy(editable).fire();
+    }
 }

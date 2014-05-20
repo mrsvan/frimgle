@@ -17,11 +17,10 @@
 package mobi.nuuvo.frimgle.shared.domain;
 
 import com.googlecode.objectify.Ref;
-import com.googlecode.objectify.annotation.Cache;
-import com.googlecode.objectify.annotation.Entity;
-import com.googlecode.objectify.annotation.Index;
-import com.googlecode.objectify.annotation.Load;
-import com.googlecode.objectify.annotation.Parent;
+import com.googlecode.objectify.annotation.*;
+import org.hibernate.validator.constraints.NotBlank;
+
+import javax.validation.constraints.Pattern;
 
 /**
  * The Class Campaign.
@@ -30,308 +29,294 @@ import com.googlecode.objectify.annotation.Parent;
 @Cache
 public class Campaign extends BaseEntity {
 
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 4082856461761019085L;
+    /**
+     * The Constant serialVersionUID.
+     */
+    private static final long serialVersionUID = 4082856461761019085L;
 
-	/** The name. */
-	private String name;
+    /**
+     * The name.
+     */
+    @NotBlank(message = "You must provide a non-blank campaign name.")
+    private String name;
 
-	private String logoUrl, title, description, videoUrl;
+    @Pattern(regexp = "^https?:\\/\\/(?:[a-z\\-]+\\.)+[a-z]{2,6}(?:\\/[^\\/#?]+)+\\.(?:jpe?g|gif|png)$", flags = Pattern.Flag.CASE_INSENSITIVE, message = "You must provide a valid image URL.")
+    private String logoUrl, ctaBackgroundImgUrl, ctaLogoUrl, thnxBackgroundImgUrl, thnxLogoUrl, facebookThumbnailUrl;
 
-	private String skipText;
+    @Pattern(regexp = "^https?:\\/\\/(?:[a-z\\-]+\\.)+[a-z]{2,6}(?:\\/[^\\/#?]+)+\\.(?:avi|wmv|flv|mpg|mp4)$", flags = Pattern.Flag.CASE_INSENSITIVE, message = "You must provide a valid video URL.")
+    private String videoUrl;
 
-	private String ctaText;
+    private String title, description;
 
-	private String ctaBackgroundImgUrl;
+    private String skipText;
 
-	private String ctaLogoUrl;
+    private String ctaText;
 
-	private String ctaBtnColor;
+    private String ctaBtnColor;
 
-	private String thnxTxt;
+    private String thnxTxt;
 
-	private String thnxBackgroundImgUrl;
+    private String facebookTitle;
 
-	private String thnxLogoUrl;
+    private String facebookDescription;
 
-	private String facebookThumbnailUrl;
+    /**
+     * The account.
+     */
+    @Load
+    @Parent
+    @Index
+    private Ref<Project> project;
 
-	private String facebookTitle;
+    /**
+     * Instantiates a new user.
+     */
+    public Campaign() {
+    }
 
-	private String facebookDescription;
+    /**
+     * @return the logoUrl
+     */
+    public String getLogoUrl() {
+        return logoUrl;
+    }
 
-	/** The account. */
-	@Load
-	@Parent
-	@Index
-	private Ref<Project> project;
+    /**
+     * @param logoUrl the logoUrl to set
+     */
+    public void setLogoUrl(String logoUrl) {
+        this.logoUrl = logoUrl;
+    }
 
-	/**
-	 * @return the logoUrl
-	 */
-	public String getLogoUrl() {
-		return logoUrl;
-	}
+    /**
+     * @return the title
+     */
+    public String getTitle() {
+        return title;
+    }
 
-	/**
-	 * @return the title
-	 */
-	public String getTitle() {
-		return title;
-	}
+    /**
+     * @param title the title to set
+     */
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-	/**
-	 * @return the description
-	 */
-	public String getDescription() {
-		return description;
-	}
+    /**
+     * @return the description
+     */
+    public String getDescription() {
+        return description;
+    }
 
-	/**
-	 * @return the videoUrl
-	 */
-	public String getVideoUrl() {
-		return videoUrl;
-	}
+    /**
+     * @param description the description to set
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	/**
-	 * @return the skipText
-	 */
-	public String getSkipText() {
-		return skipText;
-	}
+    /**
+     * @return the videoUrl
+     */
+    public String getVideoUrl() {
+        return videoUrl;
+    }
 
-	/**
-	 * @return the ctaText
-	 */
-	public String getCtaText() {
-		return ctaText;
-	}
+    /**
+     * @param videoUrl the videoUrl to set
+     */
+    public void setVideoUrl(String videoUrl) {
+        this.videoUrl = videoUrl;
+    }
 
-	/**
-	 * @return the ctaBackgroundImgUrl
-	 */
-	public String getCtaBackgroundImgUrl() {
-		return ctaBackgroundImgUrl;
-	}
+    /**
+     * @return the skipText
+     */
+    public String getSkipText() {
+        return skipText;
+    }
 
-	/**
-	 * @return the ctaLogoUrl
-	 */
-	public String getCtaLogoUrl() {
-		return ctaLogoUrl;
-	}
+    /**
+     * @param skipText the skipText to set
+     */
+    public void setSkipText(String skipText) {
+        this.skipText = skipText;
+    }
 
-	/**
-	 * @return the ctaBtnColor
-	 */
-	public String getCtaBtnColor() {
-		return ctaBtnColor;
-	}
+    /**
+     * @return the ctaText
+     */
+    public String getCtaText() {
+        return ctaText;
+    }
 
-	/**
-	 * @return the thnxTxt
-	 */
-	public String getThnxTxt() {
-		return thnxTxt;
-	}
+    /**
+     * @param ctaText the ctaText to set
+     */
+    public void setCtaText(String ctaText) {
+        this.ctaText = ctaText;
+    }
 
-	/**
-	 * @return the thnxBackgroundImgUrl
-	 */
-	public String getThnxBackgroundImgUrl() {
-		return thnxBackgroundImgUrl;
-	}
+    /**
+     * @return the ctaBackgroundImgUrl
+     */
+    public String getCtaBackgroundImgUrl() {
+        return ctaBackgroundImgUrl;
+    }
 
-	/**
-	 * @return the thnxLogoUrl
-	 */
-	public String getThnxLogoUrl() {
-		return thnxLogoUrl;
-	}
+    /**
+     * @param ctaBackgroundImgUrl the ctaBackgroundImgUrl to set
+     */
+    public void setCtaBackgroundImgUrl(String ctaBackgroundImgUrl) {
+        this.ctaBackgroundImgUrl = ctaBackgroundImgUrl;
+    }
 
-	/**
-	 * @return the facebookThumbnailUrl
-	 */
-	public String getFacebookThumbnailUrl() {
-		return facebookThumbnailUrl;
-	}
+    /**
+     * @return the ctaLogoUrl
+     */
+    public String getCtaLogoUrl() {
+        return ctaLogoUrl;
+    }
 
-	/**
-	 * @return the facebookTitle
-	 */
-	public String getFacebookTitle() {
-		return facebookTitle;
-	}
+    /**
+     * @param ctaLogoUrl the ctaLogoUrl to set
+     */
+    public void setCtaLogoUrl(String ctaLogoUrl) {
+        this.ctaLogoUrl = ctaLogoUrl;
+    }
 
-	/**
-	 * @return the facebookDescription
-	 */
-	public String getFacebookDescription() {
-		return facebookDescription;
-	}
+    /**
+     * @return the ctaBtnColor
+     */
+    public String getCtaBtnColor() {
+        return ctaBtnColor;
+    }
 
-	/**
-	 * @param logoUrl
-	 *            the logoUrl to set
-	 */
-	public void setLogoUrl(String logoUrl) {
-		this.logoUrl = logoUrl;
-	}
+    /**
+     * @param ctaBtnColor the ctaBtnColor to set
+     */
+    public void setCtaBtnColor(String ctaBtnColor) {
+        this.ctaBtnColor = ctaBtnColor;
+    }
 
-	/**
-	 * @param title
-	 *            the title to set
-	 */
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    /**
+     * @return the thnxTxt
+     */
+    public String getThnxTxt() {
+        return thnxTxt;
+    }
 
-	/**
-	 * @param description
-	 *            the description to set
-	 */
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    /**
+     * @param thnxTxt the thnxTxt to set
+     */
+    public void setThnxTxt(String thnxTxt) {
+        this.thnxTxt = thnxTxt;
+    }
 
-	/**
-	 * @param videoUrl
-	 *            the videoUrl to set
-	 */
-	public void setVideoUrl(String videoUrl) {
-		this.videoUrl = videoUrl;
-	}
+    /**
+     * @return the thnxBackgroundImgUrl
+     */
+    public String getThnxBackgroundImgUrl() {
+        return thnxBackgroundImgUrl;
+    }
 
-	/**
-	 * @param skipText
-	 *            the skipText to set
-	 */
-	public void setSkipText(String skipText) {
-		this.skipText = skipText;
-	}
+    /**
+     * @param thnxBackgroundImgUrl the thnxBackgroundImgUrl to set
+     */
+    public void setThnxBackgroundImgUrl(String thnxBackgroundImgUrl) {
+        this.thnxBackgroundImgUrl = thnxBackgroundImgUrl;
+    }
 
-	/**
-	 * @param ctaText
-	 *            the ctaText to set
-	 */
-	public void setCtaText(String ctaText) {
-		this.ctaText = ctaText;
-	}
+    /**
+     * @return the thnxLogoUrl
+     */
+    public String getThnxLogoUrl() {
+        return thnxLogoUrl;
+    }
 
-	/**
-	 * @param ctaBackgroundImgUrl
-	 *            the ctaBackgroundImgUrl to set
-	 */
-	public void setCtaBackgroundImgUrl(String ctaBackgroundImgUrl) {
-		this.ctaBackgroundImgUrl = ctaBackgroundImgUrl;
-	}
+    /**
+     * @param thnxLogoUrl the thnxLogoUrl to set
+     */
+    public void setThnxLogoUrl(String thnxLogoUrl) {
+        this.thnxLogoUrl = thnxLogoUrl;
+    }
 
-	/**
-	 * @param ctaLogoUrl
-	 *            the ctaLogoUrl to set
-	 */
-	public void setCtaLogoUrl(String ctaLogoUrl) {
-		this.ctaLogoUrl = ctaLogoUrl;
-	}
+    /**
+     * @return the facebookThumbnailUrl
+     */
+    public String getFacebookThumbnailUrl() {
+        return facebookThumbnailUrl;
+    }
 
-	/**
-	 * @param ctaBtnColor
-	 *            the ctaBtnColor to set
-	 */
-	public void setCtaBtnColor(String ctaBtnColor) {
-		this.ctaBtnColor = ctaBtnColor;
-	}
+    /**
+     * @param facebookThumbnailUrl the facebookThumbnailUrl to set
+     */
+    public void setFacebookThumbnailUrl(String facebookThumbnailUrl) {
+        this.facebookThumbnailUrl = facebookThumbnailUrl;
+    }
 
-	/**
-	 * @param thnxTxt
-	 *            the thnxTxt to set
-	 */
-	public void setThnxTxt(String thnxTxt) {
-		this.thnxTxt = thnxTxt;
-	}
+    /**
+     * @return the facebookTitle
+     */
+    public String getFacebookTitle() {
+        return facebookTitle;
+    }
 
-	/**
-	 * @param thnxBackgroundImgUrl
-	 *            the thnxBackgroundImgUrl to set
-	 */
-	public void setThnxBackgroundImgUrl(String thnxBackgroundImgUrl) {
-		this.thnxBackgroundImgUrl = thnxBackgroundImgUrl;
-	}
+    /**
+     * @param facebookTitle the facebookTitle to set
+     */
+    public void setFacebookTitle(String facebookTitle) {
+        this.facebookTitle = facebookTitle;
+    }
 
-	/**
-	 * @param thnxLogoUrl
-	 *            the thnxLogoUrl to set
-	 */
-	public void setThnxLogoUrl(String thnxLogoUrl) {
-		this.thnxLogoUrl = thnxLogoUrl;
-	}
+    /**
+     * @return the facebookDescription
+     */
+    public String getFacebookDescription() {
+        return facebookDescription;
+    }
 
-	/**
-	 * @param facebookThumbnailUrl
-	 *            the facebookThumbnailUrl to set
-	 */
-	public void setFacebookThumbnailUrl(String facebookThumbnailUrl) {
-		this.facebookThumbnailUrl = facebookThumbnailUrl;
-	}
+    /**
+     * @param facebookDescription the facebookDescription to set
+     */
+    public void setFacebookDescription(String facebookDescription) {
+        this.facebookDescription = facebookDescription;
+    }
 
-	/**
-	 * @param facebookTitle
-	 *            the facebookTitle to set
-	 */
-	public void setFacebookTitle(String facebookTitle) {
-		this.facebookTitle = facebookTitle;
-	}
+    /**
+     * Gets the project.
+     *
+     * @return the project
+     */
+    public Project getProject() {
+        return project == null ? null : project.get();
+    }
 
-	/**
-	 * @param facebookDescription
-	 *            the facebookDescription to set
-	 */
-	public void setFacebookDescription(String facebookDescription) {
-		this.facebookDescription = facebookDescription;
-	}
+    /**
+     * Sets the project.
+     *
+     * @param project the project to set
+     */
+    public void setProject(Project project) {
+        this.project = safeRef(project);
+    }
 
-	/**
-	 * Gets the project.
-	 *
-	 * @return the project
-	 */
-	public Project getProject() {
-		return project == null ? null : project.get();
-	}
+    /**
+     * Gets the name.
+     *
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
 
-	/**
-	 * Sets the project.
-	 *
-	 * @param project
-	 *            the project to set
-	 */
-	public void setProject(Project project) {
-		this.project = safeRef(project);
-	}
-
-	/**
-	 * Instantiates a new user.
-	 */
-	public Campaign() {
-	}
-
-	/**
-	 * Gets the name.
-	 *
-	 * @return the name
-	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * Sets the name.
-	 *
-	 * @param name
-	 *            the new name
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
+    /**
+     * Sets the name.
+     *
+     * @param name the new name
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
 }

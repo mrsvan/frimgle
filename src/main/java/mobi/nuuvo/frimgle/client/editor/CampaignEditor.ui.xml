@@ -1,37 +1,16 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
-             xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
+             xmlns:b="urn:import:org.gwtbootstrap3.client.ui"
+             xmlns:c="urn:import:mobi.nuuvo.frimgle.client.editor">
     <b:Form>
-        <b:Legend>Edit campaign</b:Legend>
+        <b:Legend>Edit Campaign</b:Legend>
         <b:Row>
             <b:Column size="SM_8">
                 <b:FieldSet>
-                    <b:FormGroup>
-                        <b:FormLabel for="name">Name</b:FormLabel>
-                        <b:TextBox placeholder="Name" b:id="name" ui:field="name"/>
-                    </b:FormGroup>
-
-                    <b:FormGroup>
-                        <b:FormLabel for="logoUrl">Logo</b:FormLabel>
-                        <b:TextBox placeholder="Logo URL" b:id="logoUrl"
-                                   ui:field="logoUrl"/>
-                    </b:FormGroup>
-
-                    <b:FormGroup>
-                        <b:FormLabel for="title">Title</b:FormLabel>
-                        <b:TextBox placeholder="Title" b:id="title" ui:field="title"/>
-                    </b:FormGroup>
-
-                    <b:FormGroup>
-                        <b:FormLabel for="description">Description</b:FormLabel>
-                        <b:TextBox placeholder="Description" b:id="description"
-                                   ui:field="description"/>
-                    </b:FormGroup>
-
-                    <b:FormGroup>
-                        <b:FormLabel for="videoUrl">Video</b:FormLabel>
-                        <b:TextBox placeholder="Video URL" b:id="videoUrl"
-                                   ui:field="videoUrl"/>
-                    </b:FormGroup>
+                    <c:SmartTextBox label="Name" placeholder="Name" ui:field="name"/>
+                    <c:SmartTextBox label="Logo" placeholder="Logo URL" ui:field="logoUrl"/>
+                    <c:SmartTextBox label="Title" placeholder="Title text" ui:field="title"/>
+                    <c:SmartTextBox label="Description" placeholder="Description text" ui:field="description"/>
+                    <c:SmartTextBox label="Video" placeholder="Video URL" ui:field="videoUrl"/>
                 </b:FieldSet>
             </b:Column>
 
@@ -42,13 +21,7 @@
                     <b:Collapse b:id="skipText" toggle="false">
                         <b:Well size="SMALL">
                             <b:FieldSet>
-                                <b:FormGroup>
-                                    <b:FormLabel for="skipText">
-                                        Skip Text
-                                    </b:FormLabel>
-                                    <b:TextBox placeholder="Skip Text" b:id="skipText"
-                                               ui:field="skipText"/>
-                                </b:FormGroup>
+                                <c:SmartTextBox label="Skip Text" placeholder="Skip Text" ui:field="skipText"/>
                             </b:FieldSet>
                         </b:Well>
                     </b:Collapse>
@@ -60,34 +33,11 @@
                     <b:Collapse b:id="cta" toggle="false">
                         <b:Well size="SMALL">
                             <b:FieldSet>
-                                <b:FormGroup>
-                                    <b:FormLabel for="ctaLogoUrl">
-                                        Logo
-                                    </b:FormLabel>
-                                    <b:TextBox placeholder="Logo URL" b:id="ctaLogoUrl"
-                                               ui:field="ctaLogoUrl"/>
-                                </b:FormGroup>
-                                <b:FormGroup>
-                                    <b:FormLabel for="ctaText">
-                                        Text
-                                    </b:FormLabel>
-                                    <b:TextBox placeholder="Text" b:id="ctaText"
-                                               ui:field="ctaText"/>
-                                </b:FormGroup>
-                                <b:FormGroup>
-                                    <b:FormLabel for="ctaBackgroundImgUrl">
-                                        Background Image
-                                    </b:FormLabel>
-                                    <b:TextBox placeholder="Background Image URL" b:id="ctaBackgroundImgUrl"
-                                               ui:field="ctaBackgroundImgUrl"/>
-                                </b:FormGroup>
-                                <b:FormGroup>
-                                    <b:FormLabel for="ctaBtnColor">
-                                        Button Color
-                                    </b:FormLabel>
-                                    <b:TextBox placeholder="Button Color" b:id="ctaBtnColor"
-                                               ui:field="ctaBtnColor"/>
-                                </b:FormGroup>
+                                <c:SmartTextBox label="Logo" placeholder="Logo URL" ui:field="ctaLogoUrl"/>
+                                <c:SmartTextBox label="Text" placeholder="Text" ui:field="ctaText"/>
+                                <c:SmartTextBox label="Background Image" placeholder="Background Image URL"
+                                                ui:field="ctaBackgroundImgUrl"/>
+                                <c:SmartTextBox label="Button Color" placeholder="Button Color" ui:field="ctaBtnColor"/>
                             </b:FieldSet>
                         </b:Well>
                     </b:Collapse>
@@ -99,27 +49,10 @@
                     <b:Collapse b:id="thankYou" toggle="false">
                         <b:Well size="SMALL">
                             <b:FieldSet>
-                                <b:FormGroup>
-                                    <b:FormLabel for="thnxLogoUrl">
-                                        Logo
-                                    </b:FormLabel>
-                                    <b:TextBox placeholder="Logo URL" b:id="thnxLogoUrl"
-                                               ui:field="thnxLogoUrl"/>
-                                </b:FormGroup>
-                                <b:FormGroup>
-                                    <b:FormLabel for="thnxTxt">
-                                        Text
-                                    </b:FormLabel>
-                                    <b:TextBox placeholder="Text" b:id="thnxTxt"
-                                               ui:field="thnxTxt"/>
-                                </b:FormGroup>
-                                <b:FormGroup>
-                                    <b:FormLabel for="thnxBackgroundImgUrl">
-                                        Background Image
-                                    </b:FormLabel>
-                                    <b:TextBox placeholder="Background Image URL" b:id="thnxBackgroundImgUrl"
-                                               ui:field="thnxBackgroundImgUrl"/>
-                                </b:FormGroup>
+                                <c:SmartTextBox label="Logo" placeholder="Logo URL" ui:field="thnxLogoUrl"/>
+                                <c:SmartTextBox label="Text" placeholder="Text" ui:field="thnxTxt"/>
+                                <c:SmartTextBox label="Background Image" placeholder="Background Image URL"
+                                                ui:field="thnxBackgroundImgUrl"/>
                             </b:FieldSet>
                         </b:Well>
                     </b:Collapse>
@@ -131,27 +64,11 @@
                     <b:Collapse b:id="facebookPreview" toggle="false">
                         <b:Well size="SMALL">
                             <b:FieldSet>
-                                <b:FormGroup>
-                                    <b:FormLabel for="facebookTitle">
-                                        Title
-                                    </b:FormLabel>
-                                    <b:TextBox placeholder="Title" b:id="facebookTitle"
-                                               ui:field="facebookTitle"/>
-                                </b:FormGroup>
-                                <b:FormGroup>
-                                    <b:FormLabel for="facebookDescription">
-                                        Description
-                                    </b:FormLabel>
-                                    <b:TextBox placeholder="Description" b:id="facebookDescription"
-                                               ui:field="facebookDescription"/>
-                                </b:FormGroup>
-                                <b:FormGroup>
-                                    <b:FormLabel for="facebookThumbnailUrl">
-                                        Thumbnail
-                                    </b:FormLabel>
-                                    <b:TextBox placeholder="Thumbnail URL" b:id="facebookThumbnailUrl"
-                                               ui:field="facebookThumbnailUrl"/>
-                                </b:FormGroup>
+                                <c:SmartTextBox label="Title" placeholder="Title text" ui:field="facebookTitle"/>
+                                <c:SmartTextBox label="Description" placeholder="Description text"
+                                                ui:field="facebookDescription"/>
+                                <c:SmartTextBox label="Thumbnail" placeholder="Thumbnail URL"
+                                                ui:field="facebookThumbnailUrl"/>
                             </b:FieldSet>
                         </b:Well>
                     </b:Collapse>

@@ -1,0 +1,12 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:b="urn:import:org.gwtbootstrap3.client.ui"
+             xmlns:e="urn:import:com.google.gwt.editor.ui.client">
+    <b:FormGroup ui:field="group">
+        <b:FormLabel for="input" ui:field="formLabel">Name</b:FormLabel>
+        <e:ValueBoxEditorDecorator ui:field="decorator">
+            <e:valuebox>
+                <b:TextBox b:id="input" ui:field="editor"/>
+            </e:valuebox>
+        </e:ValueBoxEditorDecorator>
+    </b:FormGroup>
+</ui:UiBinder>

@@ -1,73 +1,54 @@
 package mobi.nuuvo.frimgle.client.editor;
 
-import org.gwtbootstrap3.client.ui.TextBox;
-
-import mobi.nuuvo.frimgle.client.requestfactory.proxy.CampaignProxy;
-
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.editor.client.Editor;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
+import mobi.nuuvo.frimgle.client.requestfactory.proxy.CampaignProxy;
 
 public class CampaignEditor extends Composite implements Editor<CampaignProxy> {
 
-	interface Binder extends UiBinder<Widget, CampaignEditor> {
-	}
+    private static Binder uiBinder = GWT.create(Binder.class);
+    @UiField
+    SmartTextBox name;
+    @UiField
+    SmartTextBox logoUrl;
+    @UiField
+    SmartTextBox title;
+    @UiField
+    SmartTextBox description;
+    @UiField
+    SmartTextBox videoUrl;
+    @UiField
+    SmartTextBox skipText;
+    @UiField
+    SmartTextBox ctaText;
+    @UiField
+    SmartTextBox ctaBackgroundImgUrl;
+    @UiField
+    SmartTextBox ctaLogoUrl;
+    @UiField
+    SmartTextBox ctaBtnColor;
+    @UiField
+    SmartTextBox thnxTxt;
+    @UiField
+    SmartTextBox thnxBackgroundImgUrl;
+    @UiField
+    SmartTextBox thnxLogoUrl;
+    @UiField
+    SmartTextBox facebookThumbnailUrl;
+    @UiField
+    SmartTextBox facebookTitle;
+    @UiField
+    SmartTextBox facebookDescription;
 
-	private static Binder uiBinder = GWT.create(Binder.class);
+    public CampaignEditor() {
+        initWidget(uiBinder.createAndBindUi(this));
+    }
 
-	@UiField
-	TextBox name;
-
-	@UiField
-	TextBox logoUrl;
-
-	@UiField
-	TextBox title;
-
-	@UiField
-	TextBox description;
-
-	@UiField
-	TextBox videoUrl;
-
-	@UiField
-	TextBox skipText;
-
-	@UiField
-	TextBox ctaText;
-
-	@UiField
-	TextBox ctaBackgroundImgUrl;
-
-	@UiField
-	TextBox ctaLogoUrl;
-
-	@UiField
-	TextBox ctaBtnColor;
-
-	@UiField
-	TextBox thnxTxt;
-
-	@UiField
-	TextBox thnxBackgroundImgUrl;
-
-	@UiField
-	TextBox thnxLogoUrl;
-
-	@UiField
-	TextBox facebookThumbnailUrl;
-
-	@UiField
-	TextBox facebookTitle;
-
-	@UiField
-	TextBox facebookDescription;
-
-	public CampaignEditor() {
-		initWidget(uiBinder.createAndBindUi(this));
-	}
+    interface Binder extends UiBinder<Widget, CampaignEditor> {
+    }
 
 }
