@@ -11,6 +11,7 @@ import mobi.nuuvo.frimgle.client.requestfactory.proxy.CampaignProxy;
 public class CampaignEditor extends Composite implements Editor<CampaignProxy> {
 
     private static Binder uiBinder = GWT.create(Binder.class);
+
     @UiField
     SmartTextBox name;
     @UiField

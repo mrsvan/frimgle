@@ -107,7 +107,7 @@ public class CampaignPresenter extends
                                             @Override
                                             public void onSuccess(
                                                     CampaignProxy response) {
-                                                getView().clearErrors();
+                                                clearConstraintViolations();
                                                 placeManager
                                                         .setOnLeaveConfirmation(null);
                                                 placeManager.navigateBack();
@@ -140,16 +140,27 @@ public class CampaignPresenter extends
 
     @Override
     public void save() {
-        updateDirtyStatus();
-        driver.flush().fire();
+        navigateBack(true);
     }
 
     @Override
     public void cancel() {
+        navigateBack(false);
+    }
+
+    private void navigateBack(boolean save) {
         updateDirtyStatus();
+        clearConstraintViolations();
+        if (save && driver.isDirty()) {
+            driver.flush().fire();
+        } else {
+            placeManager.navigateBack();
+        }
+    }
+
+    private void clearConstraintViolations() {
         getView().clearErrors();
         driver.setConstraintViolations(new ArrayList<ConstraintViolation<?>>());
-        placeManager.navigateBack();
     }
 
     @Override

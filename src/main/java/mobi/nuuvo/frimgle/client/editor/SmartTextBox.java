@@ -74,7 +74,7 @@ public class SmartTextBox extends Composite implements HasEditorErrors<String>, 
     public void showErrors(List<EditorError> errors) {
         boolean hasErrors = false;
         for (EditorError error : errors) {
-            hasErrors |= Objects.equals(error.getEditor(), asEditor());
+            hasErrors |= (null != error && Objects.equals(error.getEditor(), asEditor()));
         }
         group.setValidationState(hasErrors ? ValidationState.ERROR : ValidationState.NONE);
         decorator.showErrors(errors);

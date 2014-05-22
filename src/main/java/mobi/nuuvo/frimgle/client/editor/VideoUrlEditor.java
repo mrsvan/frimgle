@@ -1,5 +1,6 @@
 package mobi.nuuvo.frimgle.client.editor;
 
+import com.google.common.base.Strings;
 import com.google.gwt.editor.client.LeafValueEditor;
 import com.google.gwt.media.client.Video;
 import com.google.gwt.user.client.ui.Widget;
@@ -17,17 +18,18 @@ public class VideoUrlEditor extends Widget implements LeafValueEditor<String> {
             setElement(video.getElement());
             video.setControls(true);
             video.setAutoplay(true);
+            video.setMuted(true);
             video.setWidth("100%");
         }
     }
 
     @Override
     public String getValue() {
-        return null == video ? null : video.getSrc();
+        return null == video ? null : Strings.emptyToNull(video.getSrc());
     }
 
     @Override
     public void setValue(String value) {
-        if (null != video) video.setSrc(value);
+        if (null != video) video.setSrc(Strings.nullToEmpty(value));
     }
 }

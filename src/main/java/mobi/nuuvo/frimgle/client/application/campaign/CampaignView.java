@@ -24,7 +24,6 @@ public class CampaignView extends ViewWithUiHandlers<CampaignUiHandlers>
     @Inject
     public CampaignView(final Binder binder) {
         widget = binder.createAndBindUi(this);
-
     }
 
     @Override

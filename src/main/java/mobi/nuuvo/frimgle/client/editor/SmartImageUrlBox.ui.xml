@@ -9,9 +9,9 @@
     </ui:style>
 
     <g:FlowPanel>
-        <e:SmartTextBox ui:field="textBox"/>
+        <e:SmartTextBox ui:field="smartTextBox"/>
         <b:FormGroup>
-            <e:ImageUrlEditor addStyleNames="{style.maxWidth}" ui:field="image"/>
+            <e:ImageUrlEditor addStyleNames="{style.maxWidth}" ui:field="imageUrlEditor"/>
         </b:FormGroup>
     </g:FlowPanel>
 </ui:UiBinder>

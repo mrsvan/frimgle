@@ -8,6 +8,7 @@
     <!-- GwtBootstrap3 -->
     <inherits name="org.gwtbootstrap3.GwtBootstrap3"/>
     <inherits name="org.gwtbootstrap3.extras.respond.Respond"/>
+    <inherits name="org.gwtbootstrap3.extras.bootbox.Bootbox"/>
 
     <public path="client/resource">
         <include name="css/*.css"/>
