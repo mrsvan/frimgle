@@ -16,15 +16,17 @@
 
 package mobi.nuuvo.frimgle.server.guice;
 
+import com.google.inject.Singleton;
+import com.googlecode.objectify.ObjectifyFilter;
+import com.gwtplatform.dispatch.rpc.server.guice.HandlerModule;
 import mobi.nuuvo.frimgle.server.authentication.AuthenticationModule;
 import mobi.nuuvo.frimgle.server.dispatch.DispatchHandlersModule;
-
-import com.gwtplatform.dispatch.rpc.server.guice.HandlerModule;
 
 public class ServerModule extends HandlerModule {
     @Override
     protected void configureHandlers() {
         install(new DispatchHandlersModule());
         install(new AuthenticationModule());
+        bind(ObjectifyFilter.class).in(Singleton.class);
     }
 }

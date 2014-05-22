@@ -16,28 +16,29 @@
 
 package mobi.nuuvo.frimgle.server.guice;
 
-import mobi.nuuvo.frimgle.server.appcache.ManifestServlet;
-
 import com.google.inject.servlet.ServletModule;
+import com.googlecode.objectify.ObjectifyFilter;
 import com.gwtplatform.dispatch.rpc.server.guice.DispatchServiceImpl;
 import com.gwtplatform.dispatch.rpc.shared.ActionImpl;
+import mobi.nuuvo.frimgle.server.appcache.ManifestServlet;
 
 /**
  * The Class DispatchServletModule.
  */
 public class DispatchServletModule extends ServletModule {
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see com.google.inject.servlet.ServletModule#configureServlets()
-	 */
-	@Override
-	public void configureServlets() {
-		serve("/" + ActionImpl.DEFAULT_SERVICE_NAME + "*").with(
-				DispatchServiceImpl.class);
-		install(new InjectedRequestFactoryModule());
-		serve("/gwtRequest").with(InjectedRequestFactoryServlet.class);
-		serve("/frimgle.appcache").with(ManifestServlet.class);
-	}
+    /*
+     * (non-Javadoc)
+     *
+     * @see com.google.inject.servlet.ServletModule#configureServlets()
+     */
+    @Override
+    public void configureServlets() {
+        filter("/*").through(ObjectifyFilter.class);
+        serve("/" + ActionImpl.DEFAULT_SERVICE_NAME + "*").with(
+                DispatchServiceImpl.class);
+        install(new InjectedRequestFactoryModule());
+        serve("/gwtRequest").with(InjectedRequestFactoryServlet.class);
+        serve("/frimgle.appcache").with(ManifestServlet.class);
+    }
 }
