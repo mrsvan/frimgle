@@ -37,4 +37,5 @@ public class PlaceManager extends PlaceManagerImpl {
     public void revealDefaultPlace() {
         revealPlace(defaultPlaceRequest, false);
     }
+
 }

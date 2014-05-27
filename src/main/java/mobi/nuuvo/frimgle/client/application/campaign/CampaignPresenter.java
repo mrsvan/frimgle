@@ -16,12 +16,12 @@ import com.gwtplatform.mvp.client.View;
 import com.gwtplatform.mvp.client.annotations.NameToken;
 import com.gwtplatform.mvp.client.annotations.ProxyCodeSplit;
 import com.gwtplatform.mvp.client.annotations.UseGatekeeper;
-import com.gwtplatform.mvp.client.proxy.PlaceManager;
 import com.gwtplatform.mvp.client.proxy.ProxyPlace;
 import com.gwtplatform.mvp.shared.proxy.PlaceRequest;
 import mobi.nuuvo.frimgle.client.application.ApplicationPresenter;
 import mobi.nuuvo.frimgle.client.editor.CampaignEditor;
 import mobi.nuuvo.frimgle.client.place.NameTokens;
+import mobi.nuuvo.frimgle.client.place.PlaceManager;
 import mobi.nuuvo.frimgle.client.requestfactory.FrimgleRequestFactory;
 import mobi.nuuvo.frimgle.client.requestfactory.proxy.CampaignProxy;
 import mobi.nuuvo.frimgle.client.requestfactory.requestcontext.CampaignRequestContext;
@@ -37,15 +37,16 @@ public class CampaignPresenter extends
         Presenter<CampaignPresenter.MyView, CampaignPresenter.MyProxy>
         implements CampaignUiHandlers {
 
-    public static final String ON_LEAVE_CONFIRMATION = "You have made changes to this campaign and are about to abandon them without saving!";
     /**
      * The LOGGER constant for ProjectPresenter.
      */
     private static final Logger LOGGER = Logger
             .getLogger(CampaignPresenter.class.getName());
-    final Driver driver = GWT.create(Driver.class);
-    final private Provider<FrimgleRequestFactory> requestFactoryProvider;
-    final private PlaceManager placeManager;
+    private static final String ON_LEAVE_CONFIRMATION = "You have made changes to this campaign and are about to abandon them without saving!";
+
+    private final Driver driver = GWT.create(Driver.class);
+    private final Provider<FrimgleRequestFactory> requestFactoryProvider;
+    private final PlaceManager placeManager;
 
     @Inject
     public CampaignPresenter(final EventBus eventBus, final MyView view,
@@ -65,10 +66,8 @@ public class CampaignPresenter extends
         Window.addWindowClosingHandler(new Window.ClosingHandler() {
             @Override
             public void onWindowClosing(Window.ClosingEvent event) {
-                if (isBound() && driver.isDirty() && Strings.isNullOrEmpty(event.getMessage())) {
+                if (isBound() && driver.isDirty()) {
                     event.setMessage(ON_LEAVE_CONFIRMATION);
-                } else {
-                    event.setMessage(null);
                 }
             }
         });
