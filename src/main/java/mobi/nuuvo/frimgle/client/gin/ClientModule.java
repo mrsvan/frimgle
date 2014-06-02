@@ -16,10 +16,6 @@
 
 package mobi.nuuvo.frimgle.client.gin;
 
-import mobi.nuuvo.frimgle.client.application.ApplicationModule;
-import mobi.nuuvo.frimgle.client.place.NameTokens;
-import mobi.nuuvo.frimgle.shared.dto.CurrentUserDto;
-
 import com.gwtplatform.dispatch.rpc.client.gin.RpcDispatchAsyncModule;
 import com.gwtplatform.mvp.client.annotations.DefaultPlace;
 import com.gwtplatform.mvp.client.annotations.ErrorPlace;
@@ -27,6 +23,9 @@ import com.gwtplatform.mvp.client.annotations.UnauthorizedPlace;
 import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
 import com.gwtplatform.mvp.client.gin.DefaultModule;
 import com.gwtplatform.mvp.client.proxy.DefaultPlaceManager;
+import mobi.nuuvo.frimgle.client.application.ApplicationModule;
+import mobi.nuuvo.frimgle.client.place.NameTokens;
+import mobi.nuuvo.frimgle.shared.dto.CurrentUserDto;
 
 /**
  * See more on setting up the PlaceManager on <a
@@ -40,7 +39,7 @@ public class ClientModule extends AbstractPresenterModule {
         install(new ApplicationModule());
 
         // DefaultPlaceManager Places
-        bindConstant().annotatedWith(DefaultPlace.class).to(NameTokens.HOME);
+        bindConstant().annotatedWith(DefaultPlace.class).to(NameTokens.PROJECTS);
         bindConstant().annotatedWith(ErrorPlace.class).to(NameTokens.HOME);
         bindConstant().annotatedWith(UnauthorizedPlace.class).to(NameTokens.HOME);
 
