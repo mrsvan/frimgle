@@ -31,7 +31,7 @@ public class CampaignEditor extends Composite implements Editor<CampaignProxy> {
     @UiField
     SmartImageUrlBox ctaLogoUrl;
     @UiField
-    SmartTextBox ctaBtnColor;
+    SmartColorBox ctaBtnColor;
     @UiField
     SmartTextBox thnxTxt;
     @UiField

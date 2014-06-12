@@ -37,7 +37,8 @@
                                 <c:SmartTextBox label="Text" placeholder="Text" ui:field="ctaText"/>
                                 <c:SmartImageUrlBox label="Background Image" placeholder="Background Image URL"
                                                 ui:field="ctaBackgroundImgUrl"/>
-                                <c:SmartTextBox label="Button Color" placeholder="Button Color" ui:field="ctaBtnColor"/>
+                                <c:SmartColorBox label="Button Color" placeholder="Button Color"
+                                                 ui:field="ctaBtnColor"/>
                             </b:FieldSet>
                         </b:Well>
                     </b:Collapse>
