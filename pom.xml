@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>mobi.nuuvo.frimgle</groupId>
@@ -51,6 +52,7 @@
         <servlet-api.version>2.5</servlet-api.version>
         <javax.validation.version>1.0.0.GA</javax.validation.version>
         <guava-version>17.0</guava-version>
+        <jersey.version>1.9.1</jersey.version>
 
         <!-- testing -->
         <junit.version>4.11</junit.version>
@@ -247,6 +249,23 @@
             <groupId>com.google.guava</groupId>
             <artifactId>guava-gwt</artifactId>
             <version>${guava-version}</version>
+        </dependency>
+
+        <!-- Jersey dependency for JAX RS endpoints -->
+        <dependency>
+            <groupId>com.sun.jersey</groupId>
+            <artifactId>jersey-core</artifactId>
+            <version>${jersey.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.jersey</groupId>
+            <artifactId>jersey-server</artifactId>
+            <version>${jersey.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.jersey.contribs</groupId>
+            <artifactId>jersey-guice</artifactId>
+            <version>${jersey.version}</version>
         </dependency>
 
         <!-- Test dependencies -->
@@ -491,7 +510,7 @@
                                         </goals>
                                     </pluginExecutionFilter>
                                     <action>
-                                        <ignore />
+                                        <ignore/>
                                     </action>
                                 </pluginExecution>
                             </pluginExecutions>

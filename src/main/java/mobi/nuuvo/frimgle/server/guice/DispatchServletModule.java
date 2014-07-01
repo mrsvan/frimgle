@@ -20,7 +20,9 @@ import com.google.inject.servlet.ServletModule;
 import com.googlecode.objectify.ObjectifyFilter;
 import com.gwtplatform.dispatch.rpc.server.guice.DispatchServiceImpl;
 import com.gwtplatform.dispatch.rpc.shared.ActionImpl;
+import com.sun.jersey.guice.spi.container.servlet.GuiceContainer;
 import mobi.nuuvo.frimgle.server.appcache.ManifestServlet;
+import mobi.nuuvo.frimgle.server.rest.RestModule;
 
 /**
  * The Class DispatchServletModule.
@@ -40,5 +42,7 @@ public class DispatchServletModule extends ServletModule {
         install(new InjectedRequestFactoryModule());
         serve("/gwtRequest").with(InjectedRequestFactoryServlet.class);
         serve("/frimgle.appcache").with(ManifestServlet.class);
+        install(new RestModule());
+        serve("/rest/*").with(GuiceContainer.class);
     }
 }

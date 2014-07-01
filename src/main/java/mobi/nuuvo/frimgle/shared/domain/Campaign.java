@@ -28,38 +28,22 @@ import javax.validation.constraints.Pattern;
 @Entity
 @Cache
 public class Campaign extends BaseEntity {
-
     /**
      * The Constant serialVersionUID.
      */
     private static final long serialVersionUID = 4082856461761019085L;
-
     /**
      * The name.
      */
     @NotBlank(message = "You must provide a non-blank campaign name.")
     private String name;
-
     @Pattern(regexp = "^https?:\\/\\/(?:[a-z\\-]+\\.)+[a-z]{2,6}(?:\\/[^\\/#?]+)+\\.(?:jpe?g|gif|png)$", flags = Pattern.Flag.CASE_INSENSITIVE, message = "You must provide a valid image URL.")
-    private String logoUrl, ctaBackgroundImgUrl, ctaLogoUrl, thnxBackgroundImgUrl, thnxLogoUrl, facebookThumbnailUrl;
-
-    @Pattern(regexp = "^https?:\\/\\/(?:[a-z\\-]+\\.)+[a-z]{2,6}(?:\\/[^\\/#?]+)+\\.(?:avi|wmv|flv|mpg|mp4)$", flags = Pattern.Flag.CASE_INSENSITIVE, message = "You must provide a valid video URL.")
+    private String logoUrl, skipButtonImgUrl, ctaTitleImgUrl, ctaBackgroundImgUrl, ctaButtonImgUrl, facebookThumbnailUrl;
+    @Pattern(regexp = "^https?:\\/\\/(?:[a-z\\-]+\\.)+[a-z]{2,6}(?:\\/[^\\/#?]+)+\\.(?:avi|wmv|flv|mpg|mp4|webm)$", flags = Pattern.Flag.CASE_INSENSITIVE, message = "You must provide a valid video URL.")
     private String videoUrl;
-
-    private String title, description;
-
-    private String skipText;
-
-    private String ctaText;
-
-    private String ctaBtnColor;
-
+    private String ctaRecipientEmail, ctaPlaceholderText;
     private String thnxTxt;
-
-    private String facebookTitle;
-
-    private String facebookDescription;
-
+    private String facebookTitle, facebookDescription;
     /**
      * The account.
      */
@@ -68,10 +52,70 @@ public class Campaign extends BaseEntity {
     @Index
     private Ref<Project> project;
 
+    public Campaign(final String name, final String logoUrl, final String skipButtonImgUrl, final String ctaTitleImgUrl, final String ctaBackgroundImgUrl, final String ctaButtonImgUrl, final String facebookThumbnailUrl, final String videoUrl, final String ctaRecipientEmail, final String ctaPlaceholderText, final String thnxTxt, final String facebookTitle, final String facebookDescription) {
+        this.name = name;
+        this.logoUrl = logoUrl;
+        this.skipButtonImgUrl = skipButtonImgUrl;
+        this.ctaTitleImgUrl = ctaTitleImgUrl;
+        this.ctaBackgroundImgUrl = ctaBackgroundImgUrl;
+        this.ctaButtonImgUrl = ctaButtonImgUrl;
+        this.facebookThumbnailUrl = facebookThumbnailUrl;
+        this.videoUrl = videoUrl;
+        this.ctaRecipientEmail = ctaRecipientEmail;
+        this.ctaPlaceholderText = ctaPlaceholderText;
+        this.thnxTxt = thnxTxt;
+        this.facebookTitle = facebookTitle;
+        this.facebookDescription = facebookDescription;
+    }
+
     /**
      * Instantiates a new user.
      */
     public Campaign() {
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public String getSkipButtonImgUrl() {
+        return skipButtonImgUrl;
+    }
+
+    public void setSkipButtonImgUrl(String skipButtonImgUrl) {
+        this.skipButtonImgUrl = skipButtonImgUrl;
+    }
+
+    public String getCtaTitleImgUrl() {
+        return ctaTitleImgUrl;
+    }
+
+    public void setCtaTitleImgUrl(String ctaTitleImgUrl) {
+        this.ctaTitleImgUrl = ctaTitleImgUrl;
+    }
+
+    public String getCtaButtonImgUrl() {
+        return ctaButtonImgUrl;
+    }
+
+    public void setCtaButtonImgUrl(String ctaButtonImgUrl) {
+        this.ctaButtonImgUrl = ctaButtonImgUrl;
+    }
+
+    public String getCtaRecipientEmail() {
+        return ctaRecipientEmail;
+    }
+
+    public void setCtaRecipientEmail(String ctaRecipientEmail) {
+        this.ctaRecipientEmail = ctaRecipientEmail;
+    }
+
+    public String getCtaPlaceholderText() {
+        return ctaPlaceholderText;
+    }
+
+    public void setCtaPlaceholderText(String ctaPlaceholderText) {
+        this.ctaPlaceholderText = ctaPlaceholderText;
     }
 
     /**
@@ -89,34 +133,6 @@ public class Campaign extends BaseEntity {
     }
 
     /**
-     * @return the title
-     */
-    public String getTitle() {
-        return title;
-    }
-
-    /**
-     * @param title the title to set
-     */
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    /**
-     * @return the description
-     */
-    public String getDescription() {
-        return description;
-    }
-
-    /**
-     * @param description the description to set
-     */
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    /**
      * @return the videoUrl
      */
     public String getVideoUrl() {
@@ -128,34 +144,6 @@ public class Campaign extends BaseEntity {
      */
     public void setVideoUrl(String videoUrl) {
         this.videoUrl = videoUrl;
-    }
-
-    /**
-     * @return the skipText
-     */
-    public String getSkipText() {
-        return skipText;
-    }
-
-    /**
-     * @param skipText the skipText to set
-     */
-    public void setSkipText(String skipText) {
-        this.skipText = skipText;
-    }
-
-    /**
-     * @return the ctaText
-     */
-    public String getCtaText() {
-        return ctaText;
-    }
-
-    /**
-     * @param ctaText the ctaText to set
-     */
-    public void setCtaText(String ctaText) {
-        this.ctaText = ctaText;
     }
 
     /**
@@ -173,34 +161,6 @@ public class Campaign extends BaseEntity {
     }
 
     /**
-     * @return the ctaLogoUrl
-     */
-    public String getCtaLogoUrl() {
-        return ctaLogoUrl;
-    }
-
-    /**
-     * @param ctaLogoUrl the ctaLogoUrl to set
-     */
-    public void setCtaLogoUrl(String ctaLogoUrl) {
-        this.ctaLogoUrl = ctaLogoUrl;
-    }
-
-    /**
-     * @return the ctaBtnColor
-     */
-    public String getCtaBtnColor() {
-        return ctaBtnColor;
-    }
-
-    /**
-     * @param ctaBtnColor the ctaBtnColor to set
-     */
-    public void setCtaBtnColor(String ctaBtnColor) {
-        this.ctaBtnColor = ctaBtnColor;
-    }
-
-    /**
      * @return the thnxTxt
      */
     public String getThnxTxt() {
@@ -212,34 +172,6 @@ public class Campaign extends BaseEntity {
      */
     public void setThnxTxt(String thnxTxt) {
         this.thnxTxt = thnxTxt;
-    }
-
-    /**
-     * @return the thnxBackgroundImgUrl
-     */
-    public String getThnxBackgroundImgUrl() {
-        return thnxBackgroundImgUrl;
-    }
-
-    /**
-     * @param thnxBackgroundImgUrl the thnxBackgroundImgUrl to set
-     */
-    public void setThnxBackgroundImgUrl(String thnxBackgroundImgUrl) {
-        this.thnxBackgroundImgUrl = thnxBackgroundImgUrl;
-    }
-
-    /**
-     * @return the thnxLogoUrl
-     */
-    public String getThnxLogoUrl() {
-        return thnxLogoUrl;
-    }
-
-    /**
-     * @param thnxLogoUrl the thnxLogoUrl to set
-     */
-    public void setThnxLogoUrl(String thnxLogoUrl) {
-        this.thnxLogoUrl = thnxLogoUrl;
     }
 
     /**

@@ -36,7 +36,7 @@ public class ConfigTest {
         Assert.assertEquals("img/audi_logo_new.gif", testConfig.getHeaderimage());
 
         Assert.assertEquals("Suivez votre instinct", testConfig.getOg().getTitle());
-        Assert.assertEquals("Offre AutoCredit : l’Audi A3 Attraction 1.6 TDI 105 CV à paritr de € 199/mois TVAC. AutoCredit = prêt à tempérament avec des mensualités fixes initiales et une dernière mensualité plus élevée. Taux débiteut fixe de 2,99% sur tous les véhicules de la gamme A1, A3 et A4. Offre réservée aux particuliers du 01/09/2012 au 30/09/2012 sur maximum 48 mois et avec minimum 15% d’acompte. Kilométrage maximal par an: 30.000 km. Prêt à tempérament sous réserve d’acceptation du dossier pas Volkswagen D’Ieteren Finance S.A.  Infos sur www.audi.be", testConfig.getOg().getDescription());
+        Assert.assertTrue(testConfig.getOg().getDescription().contains("Offre AutoCredit : l’Audi A3"));
         Assert.assertEquals("img/gnl-thumbnail.jpg", testConfig.getOg().getThumbnailfile());
         Assert.assertEquals("video/video.mp4", testConfig.getOg().getVideofile().getMp4());
         Assert.assertEquals("video/video.webm", testConfig.getOg().getVideofile().getWebm());
@@ -260,7 +260,7 @@ public class ConfigTest {
         Assert.assertEquals("email, user_location, user_likes, user_interests, user_birthday, user_about_me, user_hometown", testConfig.getCtaConnect().getPermissions());
         Assert.assertEquals(100, testConfig.getCtaConnect().getButton().getX());
         Assert.assertEquals(100, testConfig.getCtaConnect().getButton().getY());
-        Assert.assertEquals("img/fb-btn-connect.png", testConfig.getCtaConnect().getButton().getSource());
+        Assert.assertEquals(null, testConfig.getCtaConnect().getButton().getSource());
 
         Assert.assertEquals(300, testConfig.getCtaStripe().getAmount());
         Assert.assertEquals("usd", testConfig.getCtaStripe().getCurrency());
@@ -276,7 +276,7 @@ public class ConfigTest {
         Assert.assertEquals(true, testConfig.getCtaStripe().getNamefield().isBackgroundFill());
         Assert.assertEquals("#000000", testConfig.getCtaStripe().getNamefield().getBackgroundColor());
         Assert.assertEquals(50, testConfig.getCtaStripe().getNamefield().getMaxChars());
-        Assert.assertEquals("Your Name :", testConfig.getCtaStripe().getNamefield().getDefaultText());
+        Assert.assertEquals("Your Name: ", testConfig.getCtaStripe().getNamefield().getDefaultText());
         Assert.assertEquals(18, testConfig.getCtaStripe().getEmailfield().getX());
         Assert.assertEquals(68, testConfig.getCtaStripe().getEmailfield().getY());
         Assert.assertEquals(360, testConfig.getCtaStripe().getEmailfield().getWidth());
@@ -289,7 +289,7 @@ public class ConfigTest {
         Assert.assertEquals(true, testConfig.getCtaStripe().getEmailfield().isBackgroundFill());
         Assert.assertEquals("#000000", testConfig.getCtaStripe().getEmailfield().getBackgroundColor());
         Assert.assertEquals(50, testConfig.getCtaStripe().getEmailfield().getMaxChars());
-        Assert.assertEquals("E-mail Address :", testConfig.getCtaStripe().getEmailfield().getDefaultText());
+        Assert.assertEquals("E-mail Address: ", testConfig.getCtaStripe().getEmailfield().getDefaultText());
         Assert.assertEquals(18, testConfig.getCtaStripe().getCardnumberfield().getX());
         Assert.assertEquals(118, testConfig.getCtaStripe().getCardnumberfield().getY());
         Assert.assertEquals(250, testConfig.getCtaStripe().getCardnumberfield().getWidth());
@@ -302,7 +302,7 @@ public class ConfigTest {
         Assert.assertEquals(true, testConfig.getCtaStripe().getCardnumberfield().isBackgroundFill());
         Assert.assertEquals("#000000", testConfig.getCtaStripe().getCardnumberfield().getBackgroundColor());
         Assert.assertEquals(20, testConfig.getCtaStripe().getCardnumberfield().getMaxChars());
-        Assert.assertEquals("Card Number :", testConfig.getCtaStripe().getCardnumberfield().getDefaultText());
+        Assert.assertEquals("Card Number: ", testConfig.getCtaStripe().getCardnumberfield().getDefaultText());
         Assert.assertEquals(278, testConfig.getCtaStripe().getCvcfield().getX());
         Assert.assertEquals(118, testConfig.getCtaStripe().getCvcfield().getY());
         Assert.assertEquals(100, testConfig.getCtaStripe().getCvcfield().getWidth());
@@ -315,7 +315,7 @@ public class ConfigTest {
         Assert.assertEquals(true, testConfig.getCtaStripe().getCvcfield().isBackgroundFill());
         Assert.assertEquals("#000000", testConfig.getCtaStripe().getCvcfield().getBackgroundColor());
         Assert.assertEquals(3, testConfig.getCtaStripe().getCvcfield().getMaxChars());
-        Assert.assertEquals("CVC :", testConfig.getCtaStripe().getCvcfield().getDefaultText());
+        Assert.assertEquals("CVC: ", testConfig.getCtaStripe().getCvcfield().getDefaultText());
         Assert.assertEquals(18, testConfig.getCtaStripe().getExpirationmonthfield().getX());
         Assert.assertEquals(168, testConfig.getCtaStripe().getExpirationmonthfield().getY());
         Assert.assertEquals(160, testConfig.getCtaStripe().getExpirationmonthfield().getWidth());
@@ -328,7 +328,7 @@ public class ConfigTest {
         Assert.assertEquals(true, testConfig.getCtaStripe().getExpirationmonthfield().isBackgroundFill());
         Assert.assertEquals("#000000", testConfig.getCtaStripe().getExpirationmonthfield().getBackgroundColor());
         Assert.assertEquals(2, testConfig.getCtaStripe().getExpirationmonthfield().getMaxChars());
-        Assert.assertEquals("Expiry Month:", testConfig.getCtaStripe().getExpirationmonthfield().getDefaultText());
+        Assert.assertEquals("Expiry Month: ", testConfig.getCtaStripe().getExpirationmonthfield().getDefaultText());
         Assert.assertEquals(218, testConfig.getCtaStripe().getExpirationyearfield().getX());
         Assert.assertEquals(168, testConfig.getCtaStripe().getExpirationyearfield().getY());
         Assert.assertEquals(160, testConfig.getCtaStripe().getExpirationyearfield().getWidth());
@@ -341,10 +341,9 @@ public class ConfigTest {
         Assert.assertEquals(true, testConfig.getCtaStripe().getExpirationyearfield().isBackgroundFill());
         Assert.assertEquals("#000000", testConfig.getCtaStripe().getExpirationyearfield().getBackgroundColor());
         Assert.assertEquals(4, testConfig.getCtaStripe().getExpirationyearfield().getMaxChars());
-        Assert.assertEquals("Expiry Year:", testConfig.getCtaStripe().getExpirationyearfield().getDefaultText());
+        Assert.assertEquals("Expiry Year: ", testConfig.getCtaStripe().getExpirationyearfield().getDefaultText());
         Assert.assertEquals(100, testConfig.getCtaStripe().getButton().getX());
         Assert.assertEquals(208, testConfig.getCtaStripe().getButton().getY());
-        Assert.assertEquals("img/stripe-btn-submit.png", testConfig.getCtaStripe().getButton().getSource());
     }
 
 }

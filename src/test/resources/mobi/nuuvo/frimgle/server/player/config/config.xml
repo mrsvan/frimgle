@@ -27,7 +27,7 @@ stripe
     <!--GOOGLE ANALYTICS CONFIGS //frimgle.com : UA-31561418-1, frimglebeta.com : UA-50046396-1//-->
     <ga trackingid="UA-50046396-1"></ga>
     <!--PLAYER CONFIGS-->
-    <player>
+    <player>This won't work
         <poster>img/gnl-poster.jpg</poster>
         <!--POSTER IMAGE-->
         <playbutton>img/gnl-btn-play.png</playbutton>

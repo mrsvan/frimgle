@@ -8,24 +8,23 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- * {@code
- * <CTAShare>
- * <button x="145" y="128">
- * <!-- BUTTON SHARE -->
- * <source>img/fb-btn-share.png</source>
- * <!--
- * //<link target="_blank">https://www.google.com</link>LINK WHEN CLICKING ON THE BUTTON// REMOVED, AUTOMATED TO SIMPLIFY DEPLOYMENT//
- * -->
- * </button>
- * </CTAShare>
- * }
- * Created by svd on 6/18/14.
+ * {@code <CTAShare> <button x="145" y="128"> <!-- BUTTON SHARE --> <source>img/fb-btn-share.png</source> <!-- //<link
+ * target="_blank">https://www.google.com</link>LINK WHEN CLICKING ON THE BUTTON// REMOVED, AUTOMATED TO SIMPLIFY
+ * DEPLOYMENT// --> </button> </CTAShare> } Created by svd on 6/18/14.
  */
 @XmlRootElement(name = "CTAShare")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class CTAShareConfig {
     @XmlElement(name = "button")
     private ElementWithXYAttrSourceAndLinkElements button;
+
+    public CTAShareConfig() {
+        setButton(new ElementWithXYAttrSourceAndLinkElements(145, 128, null, null));
+    }
+
+    public CTAShareConfig(ElementWithXYAttrSourceAndLinkElements button) {
+        this.button = button;
+    }
 
     public ElementWithXYAttrSourceAndLinkElements getButton() {
         return button;

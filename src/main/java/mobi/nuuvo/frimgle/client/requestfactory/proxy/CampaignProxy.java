@@ -1,86 +1,134 @@
 package mobi.nuuvo.frimgle.client.requestfactory.proxy;
 
-import mobi.nuuvo.frimgle.server.requestfactory.BaseLocator;
-
 import com.google.web.bindery.requestfactory.shared.EntityProxy;
 import com.google.web.bindery.requestfactory.shared.EntityProxyId;
 import com.google.web.bindery.requestfactory.shared.ProxyFor;
+import mobi.nuuvo.frimgle.server.requestfactory.BaseLocator;
 
 @ProxyFor(value = mobi.nuuvo.frimgle.shared.domain.Campaign.class, locator = BaseLocator.class)
 public interface CampaignProxy extends EntityProxy {
 
-	EntityProxyId<CampaignProxy> stableId();
+    EntityProxyId<CampaignProxy> stableId();
 
-	java.lang.Long getId();
+    java.lang.Long getId();
 
-	java.lang.Integer getVersion();
+    java.lang.Integer getVersion();
 
-	java.lang.String getName();
+    public String getSkipButtonImgUrl();
 
-	java.lang.String getLogoUrl();
+    public void setSkipButtonImgUrl(String skipButtonImgUrl);
 
-	java.lang.String getTitle();
+    public String getCtaTitleImgUrl();
 
-	java.lang.String getDescription();
+    public void setCtaTitleImgUrl(String ctaTitleImgUrl);
 
-	java.lang.String getVideoUrl();
+    public String getCtaButtonImgUrl();
 
-	java.lang.String getSkipText();
+    public void setCtaButtonImgUrl(String ctaButtonImgUrl);
 
-	java.lang.String getCtaText();
+    public String getCtaRecipientEmail();
 
-	java.lang.String getCtaBackgroundImgUrl();
+    public void setCtaRecipientEmail(String ctaRecipientEmail);
 
-	java.lang.String getCtaLogoUrl();
+    public String getCtaPlaceholderText();
 
-	java.lang.String getCtaBtnColor();
+    public void setCtaPlaceholderText(String ctaPlaceholderText);
 
-	java.lang.String getThnxTxt();
+    /**
+     * @return the logoUrl
+     */
+    public String getLogoUrl();
 
-	java.lang.String getThnxBackgroundImgUrl();
+    /**
+     * @param logoUrl the logoUrl to set
+     */
+    public void setLogoUrl(String logoUrl);
 
-	java.lang.String getThnxLogoUrl();
+    /**
+     * @return the videoUrl
+     */
+    public String getVideoUrl();
 
-	java.lang.String getFacebookThumbnailUrl();
+    /**
+     * @param videoUrl the videoUrl to set
+     */
+    public void setVideoUrl(String videoUrl);
 
-	java.lang.String getFacebookTitle();
+    /**
+     * @return the ctaBackgroundImgUrl
+     */
+    public String getCtaBackgroundImgUrl();
 
-	java.lang.String getFacebookDescription();
+    /**
+     * @param ctaBackgroundImgUrl the ctaBackgroundImgUrl to set
+     */
+    public void setCtaBackgroundImgUrl(String ctaBackgroundImgUrl);
 
-	ProjectProxy getProject();
+    /**
+     * @return the thnxTxt
+     */
+    public String getThnxTxt();
 
-	void setName(java.lang.String name);
+    /**
+     * @param thnxTxt the thnxTxt to set
+     */
+    public void setThnxTxt(String thnxTxt);
 
-	void setLogoUrl(java.lang.String logoUrl);
+    /**
+     * @return the facebookThumbnailUrl
+     */
+    public String getFacebookThumbnailUrl();
 
-	void setTitle(java.lang.String title);
+    /**
+     * @param facebookThumbnailUrl the facebookThumbnailUrl to set
+     */
+    public void setFacebookThumbnailUrl(String facebookThumbnailUrl);
 
-	void setDescription(java.lang.String description);
+    /**
+     * @return the facebookTitle
+     */
+    public String getFacebookTitle();
 
-	void setVideoUrl(java.lang.String videoUrl);
+    /**
+     * @param facebookTitle the facebookTitle to set
+     */
+    public void setFacebookTitle(String facebookTitle);
 
-	void setSkipText(java.lang.String skipText);
+    /**
+     * @return the facebookDescription
+     */
+    public String getFacebookDescription();
 
-	void setCtaText(java.lang.String ctaText);
+    /**
+     * @param facebookDescription the facebookDescription to set
+     */
+    public void setFacebookDescription(String facebookDescription);
 
-	void setCtaBackgroundImgUrl(java.lang.String ctaBackgroundImgUrl);
+    /**
+     * Gets the project.
+     *
+     * @return the project
+     */
+    public ProjectProxy getProject();
 
-	void setCtaLogoUrl(java.lang.String ctaLogoUrl);
+    /**
+     * Sets the project.
+     *
+     * @param project the project to set
+     */
+    public void setProject(ProjectProxy project);
 
-	void setCtaBtnColor(java.lang.String ctaBtnColor);
+    /**
+     * Gets the name.
+     *
+     * @return the name
+     */
+    public String getName();
 
-	void setThnxTxt(java.lang.String thnxTxt);
-
-	void setThnxBackgroundImgUrl(java.lang.String thnxBackgroundImgUrl);
-
-	void setThnxLogoUrl(java.lang.String thnxLogoUrl);
-
-	void setFacebookThumbnailUrl(java.lang.String facebookThumbnailUrl);
-
-	void setFacebookTitle(java.lang.String facebookTitle);
-
-	void setFacebookDescription(java.lang.String facebookDescription);
-
-	void setProject(ProjectProxy project);
-
+    /**
+     * Sets the name.
+     *
+     * @param name the new name
+     */
+    public void setName(String name);
 }

@@ -8,8 +8,6 @@
                 <b:FieldSet>
                     <c:SmartTextBox label="Name" placeholder="Name" ui:field="name"/>
                     <c:SmartImageUrlBox label="Logo" placeholder="Logo URL" ui:field="logoUrl"/>
-                    <c:SmartTextBox label="Title" placeholder="Title text" ui:field="title"/>
-                    <c:SmartTextBox label="Description" placeholder="Description text" ui:field="description"/>
                     <c:SmartVideoUrlBox label="Video" placeholder="Video URL" ui:field="videoUrl"/>
                 </b:FieldSet>
             </b:Column>
@@ -21,7 +19,8 @@
                     <b:Collapse b:id="skipText" toggle="false">
                         <b:Well size="SMALL">
                             <b:FieldSet>
-                                <c:SmartTextBox label="Skip Text" placeholder="Skip Text" ui:field="skipText"/>
+                                <c:SmartImageUrlBox label="Skip Button Image" placeholder="Skip Button Image URL"
+                                                    ui:field="skipButtonImgUrl"/>
                             </b:FieldSet>
                         </b:Well>
                     </b:Collapse>
@@ -33,12 +32,16 @@
                     <b:Collapse b:id="cta" toggle="false">
                         <b:Well size="SMALL">
                             <b:FieldSet>
-                                <c:SmartImageUrlBox label="Logo" placeholder="Logo URL" ui:field="ctaLogoUrl"/>
-                                <c:SmartTextBox label="Text" placeholder="Text" ui:field="ctaText"/>
+                                <c:SmartTextBox label="Recipient Email" placeholder="Email address"
+                                                ui:field="ctaRecipientEmail"/>
+                                <c:SmartTextBox label="Recipient Email Placeholder Text" placeholder="Placeholder text"
+                                                ui:field="ctaPlaceholderText"/>
+                                <c:SmartImageUrlBox label="Title Image" placeholder="Title Image URL"
+                                                    ui:field="ctaTitleImgUrl"/>
                                 <c:SmartImageUrlBox label="Background Image" placeholder="Background Image URL"
-                                                ui:field="ctaBackgroundImgUrl"/>
-                                <c:SmartColorBox label="Button Color" placeholder="Button Color"
-                                                 ui:field="ctaBtnColor"/>
+                                                    ui:field="ctaBackgroundImgUrl"/>
+                                <c:SmartImageUrlBox label="Send Button Image" placeholder="Send Button Image URL"
+                                                    ui:field="ctaButtonImgUrl"/>
                             </b:FieldSet>
                         </b:Well>
                     </b:Collapse>
@@ -50,10 +53,7 @@
                     <b:Collapse b:id="thankYou" toggle="false">
                         <b:Well size="SMALL">
                             <b:FieldSet>
-                                <c:SmartImageUrlBox label="Logo" placeholder="Logo URL" ui:field="thnxLogoUrl"/>
                                 <c:SmartTextBox label="Text" placeholder="Text" ui:field="thnxTxt"/>
-                                <c:SmartImageUrlBox label="Background Image" placeholder="Background Image URL"
-                                                ui:field="thnxBackgroundImgUrl"/>
                             </b:FieldSet>
                         </b:Well>
                     </b:Collapse>
@@ -69,7 +69,7 @@
                                 <c:SmartTextBox label="Description" placeholder="Description text"
                                                 ui:field="facebookDescription"/>
                                 <c:SmartImageUrlBox label="Thumbnail" placeholder="Thumbnail URL"
-                                                ui:field="facebookThumbnailUrl"/>
+                                                    ui:field="facebookThumbnailUrl"/>
                             </b:FieldSet>
                         </b:Well>
                     </b:Collapse>

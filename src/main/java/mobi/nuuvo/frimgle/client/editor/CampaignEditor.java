@@ -17,27 +17,21 @@ public class CampaignEditor extends Composite implements Editor<CampaignProxy> {
     @UiField
     SmartImageUrlBox logoUrl;
     @UiField
-    SmartTextBox title;
-    @UiField
-    SmartTextBox description;
-    @UiField
     SmartVideoUrlBox videoUrl;
     @UiField
-    SmartTextBox skipText;
+    SmartImageUrlBox skipButtonImgUrl;
     @UiField
-    SmartTextBox ctaText;
+    SmartTextBox ctaRecipientEmail;
+    @UiField
+    SmartTextBox ctaPlaceholderText;
+    @UiField
+    SmartImageUrlBox ctaTitleImgUrl;
     @UiField
     SmartImageUrlBox ctaBackgroundImgUrl;
     @UiField
-    SmartImageUrlBox ctaLogoUrl;
-    @UiField
-    SmartColorBox ctaBtnColor;
+    SmartImageUrlBox ctaButtonImgUrl;
     @UiField
     SmartTextBox thnxTxt;
-    @UiField
-    SmartImageUrlBox thnxBackgroundImgUrl;
-    @UiField
-    SmartImageUrlBox thnxLogoUrl;
     @UiField
     SmartImageUrlBox facebookThumbnailUrl;
     @UiField
